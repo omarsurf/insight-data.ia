@@ -7,7 +7,7 @@
 /** Bloc « Exemple d'application », avec repères d'angle et ligne de cote. */
 export function ExampleBlock({ label, paragraphs }: { label: string; paragraphs: string[] }) {
   return (
-    <div className="example corners">
+    <div className="example corners reveal">
       <p className="label">{label}</p>
       {paragraphs.map((paragraph) => <p key={paragraph} className="max-w-[68ch]">{paragraph}</p>)}
     </div>

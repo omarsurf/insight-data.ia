@@ -19,7 +19,7 @@ export function Section({ intro, id, children }: SectionProps) {
     <section className="border-t border-line" aria-labelledby={id}>
       <div className="wrap grid gap-8 py-24 lg:grid-cols-12 lg:gap-6 lg:py-40">
         <p className="label lg:col-span-2">{intro.label}</p>
-        <div className="grid gap-12 lg:col-span-10">
+        <div className="reveal grid gap-12 lg:col-span-10">
           <div className="grid gap-6">
             <h2 id={id} className="t-h2">{intro.title}</h2>
             {intro.paragraphs?.map((paragraph) => (

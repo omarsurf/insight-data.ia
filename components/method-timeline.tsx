@@ -13,7 +13,7 @@ export function MethodTimeline({ steps, stepLabel }: TimelineProps) {
     <div>
       <ol className="timeline">
         {steps.map((step, index) => (
-          <li key={step.name} className="timeline-step">
+          <li key={step.name} className="timeline-step reveal">
             <p className="label">{stepLabel} {index + 1}</p>
             <h2 className="t-h3">{step.name}</h2>
             {step.paragraphs.map((paragraph) => (
@@ -22,7 +22,7 @@ export function MethodTimeline({ steps, stepLabel }: TimelineProps) {
           </li>
         ))}
       </ol>
-      <svg className="timeline-return" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
+      <svg className="timeline-return draw" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true">
         <path d="M900 2C900 28 860 34 800 34H60C20 34 6 24 6 6" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="5 5" vectorEffect="non-scaling-stroke" />
         <path d="M1 12L6 4L11 12" fill="none" stroke="currentColor" strokeWidth="1" vectorEffect="non-scaling-stroke" />
       </svg>

@@ -64,12 +64,14 @@ interface GlyphProps {
   id: SolutionId;
   /** Taille en pixels ; 48 par défaut, la taille d'emploi du design system. */
   size?: number;
+  /** Vrai pour que le glyphe se dessine à son entrée à l'écran. */
+  draw?: boolean;
 }
 
 /** Glyphe d'un domaine : le segment du tracé qui lui correspond. */
-export function Glyph({ id, size = 48 }: GlyphProps) {
+export function Glyph({ id, size = 48, draw = false }: GlyphProps) {
   return (
-    <svg className="flex-none" width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
+    <svg className={draw ? 'draw flex-none' : 'flex-none'} width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
       {drawings[id]}
     </svg>
   );

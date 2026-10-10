@@ -6,6 +6,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Manrope, Martian_Mono } from 'next/font/google';
 import { locale as rootLocale } from 'next/root-params';
+import { SiteMotion } from '@/components/site-motion';
 import { routing } from '@/i18n/routing';
 import { siteUrl } from '@/lib/metadata';
 import '../globals.css';
@@ -37,7 +38,10 @@ export const viewport: Viewport = {
 export default async function RootLayout({ children }: LayoutProps<'/[locale]'>) {
   return (
     <html lang={await rootLocale()} className={`${manrope.variable} ${martianMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <SiteMotion />
+      </body>
     </html>
   );
 }

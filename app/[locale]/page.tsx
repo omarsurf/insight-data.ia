@@ -1,14 +1,14 @@
 /**
  * page.tsx — Page d'accueil.
  * Résume l'offre en huit sections et renvoie vers les pages détaillées
- * (PRD, section 6.3). Sans animations : elles arrivent en phase 3.
+ * (PRD, section 6.3).
  */
 import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { CtaBanner } from '@/components/cta-banner';
 import { Hero } from '@/components/home/hero';
 import { AssessmentPreview, MethodPreview, WhyUs } from '@/components/home/sections';
-import { Stations } from '@/components/home/stations';
+import { Scene } from '@/components/home/scene';
 import { PagePlaceholder } from '@/components/page-placeholder';
 import { PageShell } from '@/components/page-shell';
 import { Readiness } from '@/components/readiness';
@@ -42,9 +42,8 @@ export default async function Page() {
     <PageShell route={route}>
       <Hero content={content.hero} />
       <Section intro={content.problem} id="problem-title" />
-      <Section intro={content.vision} id="vision-title">
-        <Stations stations={content.vision.stations} note={content.vision.note} />
-      </Section>
+      <Section intro={content.vision} id="vision-title" />
+      <Scene stations={content.vision.stations} note={content.vision.note} labelledBy="vision-title" />
       <MethodPreview content={content.method} />
       <Readiness content={content.readiness} />
       <WhyUs content={content.why} />

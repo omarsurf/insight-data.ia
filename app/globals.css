@@ -265,7 +265,138 @@
   }
 }
 
+/* ==========================================================================
+   Mouvement (phase 3). Un seul geste revient : un trait qui se trace.
+   Tout est en CSS ; components/site-motion.tsx n'apporte que le repli des
+   entrées à l'écran et la position du pointeur.
+   ========================================================================== */
+
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+@keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes strip { to { transform: translateX(-83.3333%); } }
+@keyframes back { to { transform: translateX(-28%); } }
+@keyframes mark { 0%, 100% { opacity: 0; transform: scaleY(.2); } 12%, 88% { opacity: 1; transform: scaleY(1); } }
+@keyframes num { 0%, 100% { color: var(--color-ink-muted); } 12%, 88% { color: var(--color-accent); } }
+@keyframes desc { 0%, 100% { opacity: 0; } 12%, 88% { opacity: 1; } }
+
+@layer components {
+  /* Hero : le slogan se dévoile ligne par ligne dès le premier affichage (règle M1),
+     le tracé se dessine, et les plans s'inclinent selon le pointeur. */
+  .hero-line { display: block; animation: rise 520ms var(--ease-settle) both; }
+  .hero-line:nth-child(2) { animation-delay: 70ms; }
+  .hero-line:nth-child(3) { animation-delay: 140ms; }
+  .hero-trace { animation: wipe var(--duration-trace) var(--ease-trace) 200ms both; }
+  .planes-tilt {
+    position: absolute; inset: 0; transform-style: preserve-3d;
+    transform: rotateX(calc(var(--py, 0) * -4deg)) rotateY(calc(var(--px, 0) * 4deg));
+    transition: transform var(--duration-base) var(--ease-settle);
+  }
+
+  /* Lampe d'inspection : au survol d'une carte, seul le filet de 1 px s'éclaire
+     autour du pointeur, sans halo ni flou. */
+  .card { position: relative; }
+  .card::before {
+    content: ""; position: absolute; inset: -1px; padding: 1px; border-radius: inherit; pointer-events: none;
+    background: radial-gradient(180px circle at var(--mx, -999px) var(--my, -999px), var(--color-accent), transparent 70%);
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    opacity: 0; transition: opacity var(--duration-fast);
+  }
+  .card:hover::before { opacity: 1; }
+
+  /* Stations du parcours. Par défaut : mise en page empilée (mobile, fenêtre
+     basse, navigateur sans animations au défilement, mouvement réduit). */
+  .scene-panel { display: none; }
+  .scene-list { display: grid; gap: 48px; }
+  .scene-item { --g: var(--color-accent); display: grid; gap: 12px; }
+  .scene-glyph { --gw: 2.5; }
+  .scene-head { display: grid; gap: 8px; }
+  .scene-num { color: var(--color-accent); }
+  .scene-link { transition: color var(--duration-fast); }
+  .scene-link:hover { color: var(--color-accent); }
+  .scene-desc { max-width: 68ch; color: var(--color-ink-muted); }
+  .scene-mark { display: none; }
+  .scene-note { max-width: 68ch; margin-top: 32px; font-size: var(--text-small); line-height: 1.55; color: var(--color-ink-muted); }
+  @media (min-width: 640px) {
+    .scene-item { grid-template-columns: 200px 1fr; column-gap: 48px; align-content: center; }
+    .scene-glyph { grid-row: span 2; }
+  }
+}
+
+/* Scène épinglée de l'accueil : seulement sur ordinateur, dans une fenêtre
+   assez haute, si le navigateur gère les animations CSS au défilement et si
+   le visiteur n'a pas demandé à réduire le mouvement (design system, 5.3). */
+@media (min-width: 1024px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* La scène occupe quatre hauteurs de fenêtre ; l'en-tête fixe est déduit. */
+    .scene { height: 400vh; view-timeline-name: --scene; view-timeline-axis: block; view-timeline-inset: var(--header-height) 0px; }
+    .scene-sticky {
+      position: sticky; top: var(--header-height); height: calc(100vh - var(--header-height));
+      display: grid; grid-template-columns: 7fr 5fr; grid-template-rows: repeat(6, auto) auto;
+      column-gap: 48px; align-content: center;
+    }
+    /* La liste et ses éléments passent en « display: contents » pour placer
+       titres et descriptions sur la grille commune ; le balisage reste une
+       liste ordonnée de six liens toujours visibles. */
+    .scene .scene-list, .scene .scene-item { display: contents; }
+
+    /* Panneau au rapport 5:3 : chaque station du tracé (200 x 120 unités) le remplit. */
+    .scene-panel { display: block; grid-column: 1; grid-row: 1 / span 6; position: relative; aspect-ratio: 5 / 3; align-self: center; overflow: hidden; border: 1px solid var(--color-line); border-radius: var(--radius-base); }
+    /* Calque du fond : avance moins vite que le tracé, d'où la profondeur. */
+    .scene-back {
+      position: absolute; inset: 0 -40% 0 0;
+      background-image: radial-gradient(circle, var(--color-line-strong) 1px, transparent 1.5px);
+      background-size: 24px 24px;
+      animation: back linear both; animation-timeline: --scene; animation-range: contain 0% contain 100%;
+    }
+    /* Calque du tracé : six stations, une par largeur de panneau. */
+    .scene-strip {
+      position: absolute; inset: 0 auto 0 0; width: 600%; height: 100%;
+      animation: strip linear both; animation-timeline: --scene; animation-range: contain 0% contain 100%;
+    }
+    .scene-strip svg { width: 100%; height: 100%; }
+
+    .scene .scene-glyph { display: none; }
+    .scene .scene-head { grid-column: 2; grid-row: calc(var(--i) + 1); position: relative; gap: 2px; padding: 10px 0 10px 20px; }
+    .scene .scene-head h3 { font-size: var(--text-body); }
+    .scene .scene-num { animation: num linear both; animation-timeline: --scene; animation-range: contain calc(var(--i) * 16.666%) contain calc((var(--i) + 1) * 16.666%); }
+    .scene .scene-mark {
+      display: block; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; border-radius: 1px;
+      background: var(--color-accent); transform-origin: 50% 0;
+      animation: mark linear both; animation-timeline: --scene; animation-range: contain calc(var(--i) * 16.666%) contain calc((var(--i) + 1) * 16.666%);
+    }
+    /* Les six descriptions partagent la même case, sous le panneau ; seule
+       celle de la station courante est opaque. */
+    .scene .scene-desc {
+      grid-column: 1; grid-row: 7; align-self: start; min-height: 4.5em; margin-top: 24px; color: var(--color-ink);
+      animation: desc linear both; animation-timeline: --scene; animation-range: contain calc(var(--i) * 16.666%) contain calc((var(--i) + 1) * 16.666%);
+    }
+    .scene .scene-note { grid-column: 2; grid-row: 7; margin-top: 24px; padding-left: 20px; }
+  }
+}
+
+/* Entrées à l'écran. Navigateur avec animations au défilement : tout en CSS. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
+    .draw { animation: wipe linear both; animation-timeline: view(); animation-range: entry 20% cover 40%; }
+    /* Dans la scène épinglée, le tracé est piloté par la scène elle-même. */
+    .scene-strip .draw { animation: none; }
+  }
+}
+/* Repli : ces classes ne sont posées que par le script, sur les éléments encore
+   hors de l'écran. Sans script, rien n'est masqué (règles A4 et M5). */
+.reveal-pending { opacity: 0; transform: translateY(12px); }
+.reveal-in { transition: opacity var(--duration-base) var(--ease-settle), transform var(--duration-base) var(--ease-settle); }
+.draw-pending { clip-path: inset(0 100% 0 0); }
+.draw-in { animation: wipe var(--duration-trace) var(--ease-trace) both; }
+
+/* Transitions de page : le glyphe glisse de sa carte vers la page du domaine. */
+::view-transition { pointer-events: none; }
+::view-transition-group(*) { animation-duration: var(--duration-base); animation-timing-function: var(--ease-settle); }
+
 /* Mouvement réduit : aucun mouvement (règle A3 du PRD) */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+  .planes-tilt { transform: none; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }

@@ -14,7 +14,7 @@ test('l\'accueil présente le slogan et un seul titre de niveau 1', async ({ pag
 
 test('les six stations mènent chacune à sa page solution', async ({ page }) => {
   await page.goto('/fr');
-  const stations = page.getByRole('region', { name: /Des données dispersées/ }).getByRole('listitem');
+  const stations = page.getByRole('group', { name: /Des données dispersées/ }).getByRole('listitem');
   await expect(stations).toHaveCount(6);
 
   await stations.nth(3).getByRole('link').click();

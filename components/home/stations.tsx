@@ -1,9 +1,11 @@
 /**
- * stations.tsx — Les six stations du parcours, en mise en page empilée.
+ * stations.tsx — Les six stations du parcours.
  * Liste ordonnée de six liens, toujours visibles, vers les pages solution.
- * Employée sur l'accueil et sur la page À propos. La mise en page épinglée
- * de l'accueil et son animation au défilement arrivent en phase 3.
+ * Mise en page empilée par défaut (page À propos, mobile, repli) ; placée
+ * dans la scène de l'accueil, la même liste passe en mise en page épinglée
+ * par le seul CSS (voir scene.tsx et globals.css).
  */
+import type { CSSProperties } from 'react';
 import { getLocale } from 'next-intl/server';
 import type { VisionContent } from '@/content/types';
 import type { Locale } from '@/i18n/routing';
@@ -16,25 +18,23 @@ export async function Stations({ stations, note }: Pick<VisionContent, 'stations
 
   return (
     <>
-      <ol className="grid gap-12">
-        {stations.map((station) => (
-          <li key={station.id} className="grid gap-3 sm:grid-cols-[200px_1fr] sm:items-center sm:gap-x-12">
-            {/* Agrandi, le trait du glyphe s'épaissit pour rester en proportion des nœuds */}
-            <span className="[--gw:2.5] sm:row-span-3"><Glyph id={station.id} size={200} /></span>
-            <p className="label text-accent">{station.id} — {station.name}</p>
-            <h3 className="t-h3">
-              <Link
-                href={hrefFor({ solutionId: station.id }, locale)}
-                className="transition-colors duration-(--duration-fast) hover:text-accent"
-              >
-                {station.title}
-              </Link>
-            </h3>
-            <p className="max-w-[68ch] text-ink-muted">{station.text}</p>
+      <ol className="scene-list">
+        {stations.map((station, index) => (
+          // --i : rang de la station, lu par les animations de la scène épinglée.
+          <li key={station.id} className="scene-item" style={{ '--i': index } as CSSProperties}>
+            <span className="scene-glyph"><Glyph id={station.id} size={200} draw /></span>
+            <div className="scene-head">
+              <span className="scene-mark" aria-hidden="true" />
+              <p className="label scene-num">{station.id} — {station.name}</p>
+              <h3 className="t-h3">
+                <Link href={hrefFor({ solutionId: station.id }, locale)} className="scene-link">{station.title}</Link>
+              </h3>
+            </div>
+            <p className="scene-desc">{station.text}</p>
           </li>
         ))}
       </ol>
-      <p className="t-small max-w-[68ch] text-ink-muted">{note}</p>
+      <p className="scene-note">{note}</p>
     </>
   );
 }

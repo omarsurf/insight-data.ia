@@ -4,10 +4,12 @@
  * et navigation entre domaines (PRD, section 6.3). Le slug de l'URL est
  * propre à chaque langue ; l'identifiant du domaine relie les deux.
  */
+import { ViewTransition } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { ConditionNote, ExampleBlock, Goal } from '@/components/blocks';
+import { Glyph } from '@/components/glyph';
 import { CtaBanner } from '@/components/cta-banner';
 import { PageBody } from '@/components/page-header';
 import { PagePlaceholder } from '@/components/page-placeholder';
@@ -62,7 +64,11 @@ export default async function Page({ params }: Props) {
   return (
     <PageShell route={route}>
       <PageBody label={solution.id} title={name}>
-        <TraceBreadcrumb current={solution.id} label={labels.breadcrumb} />
+        <div className="flex flex-wrap items-center gap-8">
+          {/* Même nom que le glyphe de la carte de la page Solutions (transition de page). */}
+          <span className="[--gw:2]"><ViewTransition name={`glyph-${solution.id}`}><Glyph id={solution.id} size={72} /></ViewTransition></span>
+          <TraceBreadcrumb current={solution.id} label={labels.breadcrumb} />
+        </div>
 
         <div className="grid gap-6">
           <p className="t-h2 font-bold">{item.title}</p>

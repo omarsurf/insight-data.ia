@@ -16,6 +16,11 @@ for (const url of templates) {
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
       .analyze();
-    expect(results.violations.map((violation) => `${violation.id} : ${violation.help}`)).toEqual([]);
+    // Chaque violation est rapportée avec les éléments en cause, pour être lisible dans le journal.
+    const report = results.violations.map((violation) => ({
+      rule: violation.id,
+      elements: violation.nodes.map((node) => `${node.target.join(' ')} — ${node.failureSummary}`),
+    }));
+    expect(report).toEqual([]);
   });
 }

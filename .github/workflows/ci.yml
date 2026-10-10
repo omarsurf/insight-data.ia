@@ -25,6 +25,13 @@ jobs:
       - run: npm test
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:e2e
+      # En cas d'échec, affiche l'état de la page de chaque test dans le résumé du journal.
+      - name: Contexte des échecs
+        if: failure()
+        run: |
+          for f in test-results/*/error-context.md; do
+            echo "::error title=$(basename "$(dirname "$f")")::$(head -c 3000 "$f" | tr '\n' '~')"
+          done
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

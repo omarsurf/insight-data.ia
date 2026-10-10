@@ -1,8 +1,9 @@
 /**
  * methodology.ts — Contenu français de la page Méthodologie.
  * Texte repris tel quel des sections 04 et 05 de SOURCE.md (règle E1).
- * Les titres sont les traductions validées au lot 1 ; « Notre engagement »
- * traduit « Our Commitment » (lot 3).
+ * Les titres sont les traductions validées au lot 1 ; « Ce à quoi nous nous
+ * engageons » traduit « Our Commitment » (lot 3), pour se distinguer du
+ * titre « Notre engagement » de la page À propos.
  */
 import type { MethodologyContent } from '../types';
 import { readiness } from './common';
@@ -55,7 +56,7 @@ export const methodology: MethodologyContent = {
   readiness,
   commitment: {
     label: 'Faisabilité technique',
-    title: 'Notre engagement',
+    title: 'Ce à quoi nous nous engageons',
     opening: 'Nous privilégions les solutions adaptées aux besoins et aux ressources de l’entreprise.',
     condition:
       'Nous ne garantissons pas à l’avance qu’un modèle atteindra une précision déterminée ni qu’une technologie produira un résultat donné. Les performances doivent être évaluées à partir de données adaptées et selon des critères de réussite définis avec le client.',

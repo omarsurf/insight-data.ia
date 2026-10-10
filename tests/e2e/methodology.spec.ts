@@ -10,6 +10,6 @@ test('la méthodologie présente cinq étapes, trois situations et l\'engagement
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Partir du problème, pas de la technologie.');
   await expect(page.locator('ol.timeline > li')).toHaveCount(5);
   await expect(page.getByRole('heading', { name: /^Quand / })).toHaveCount(3);
-  await expect(page.getByRole('heading', { name: 'Notre engagement' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Ce à quoi nous nous engageons' })).toBeVisible();
   await expect(page.getByText(/Nous ne garantissons pas à l’avance/)).toBeVisible();
 });

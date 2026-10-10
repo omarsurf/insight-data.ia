@@ -6,6 +6,8 @@ import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const isDev = process.env.NODE_ENV === 'development';
+// Vrai sur Vercel, où le site est servi en HTTPS.
+const isDeployed = Boolean(process.env.VERCEL);
 
 // CSP sans jeton par requête : les pages sont statiques, donc les scripts et
 // styles en ligne du framework sont autorisés ; tout le reste est strict.
@@ -20,7 +22,9 @@ const contentSecurityPolicy = [
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
-  'upgrade-insecure-requests',
+  // Seulement en HTTPS : servi en HTTP local, Safari appliquerait cette règle
+  // aux fichiers du site lui-même et ne chargerait ni styles ni scripts.
+  ...(isDeployed ? ['upgrade-insecure-requests'] : []),
 ].join('; ');
 
 const securityHeaders = [

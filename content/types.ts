@@ -35,7 +35,7 @@ export interface HomeContent {
   };
   readiness: ReadinessContent;
   why: SectionIntro & { items: string[]; link: string };
-  assessment: SectionIntro & { includesTitle: string; items: TitledText[]; cta: string };
+  assessment: AssessmentIntro & { cta: string };
   closing: CtaContent;
 }
 
@@ -144,4 +144,27 @@ export interface AboutContent {
   ambition: string;
   why: SectionIntro & { items: TitledText[] };
   engagement: SectionIntro & { listIntro: string; items: string[]; closing: string };
+}
+
+/** Présentation du diagnostic : introduction et ses cinq volets. */
+export interface AssessmentIntro extends SectionIntro {
+  includesTitle: string;
+  items: TitledText[];
+}
+
+/** Contenu de la page Diagnostic gratuit, hors formulaire. */
+export interface AssessmentContent {
+  intro: AssessmentIntro;
+  receive: { title: string; intro: string; items: string[] };
+  process: { title: string; steps: TitledText[] };
+  /** Périmètre du diagnostic, affiché en note conditionnelle. */
+  scope: { label: string; text: string };
+  closing: string;
+}
+
+/** Contenu de la page Contact, hors coordonnées et formulaire. */
+export interface ContactContent {
+  label: string;
+  title: string;
+  paragraphs: string[];
 }

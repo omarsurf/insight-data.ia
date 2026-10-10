@@ -5,15 +5,19 @@
  */
 import type { Locale } from '@/i18n/routing';
 import { about as aboutFr } from './fr/about';
+import { assessment as assessmentFr } from './fr/assessment';
 import { collaboration as collaborationFr } from './fr/collaboration';
 import { ctaBanner as ctaBannerFr } from './fr/common';
+import { contact as contactFr } from './fr/contact';
 import { home as homeFr } from './fr/home';
 import { industries as industriesFr } from './fr/industries';
 import { methodology as methodologyFr } from './fr/methodology';
 import { solutions as solutionsFr } from './fr/solutions';
 import type {
   AboutContent,
+  AssessmentContent,
   CollaborationContent,
+  ContactContent,
   CtaContent,
   HomeContent,
   IndustriesContent,
@@ -65,4 +69,17 @@ export function getCollaborationContent(locale: Locale): CollaborationContent | 
 /** Contenu de la page À propos, s'il existe déjà. */
 export function getAboutContent(locale: Locale): AboutContent | undefined {
   return aboutByLocale[locale];
+}
+
+const assessmentByLocale: Partial<Record<Locale, AssessmentContent>> = { fr: assessmentFr };
+const contactByLocale: Partial<Record<Locale, ContactContent>> = { fr: contactFr };
+
+/** Contenu de la page Diagnostic gratuit, s'il existe déjà. */
+export function getAssessmentContent(locale: Locale): AssessmentContent | undefined {
+  return assessmentByLocale[locale];
+}
+
+/** Contenu de la page Contact, s'il existe déjà. */
+export function getContactContent(locale: Locale): ContactContent | undefined {
+  return contactByLocale[locale];
 }

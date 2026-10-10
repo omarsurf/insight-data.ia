@@ -42,7 +42,10 @@
     "privacy": "Privacy policy",
     "notFound": "Page not found",
     "backHome": "Back to home",
-    "pending": "The content of this page arrives in phase 2."
+    "pending": "The content of this page arrives in phase 2.",
+    "formDiagnostic": "Assessment request",
+    "formContact": "Your message",
+    "formPending": "The form arrives in phase 4."
   },
   "footer": {
     "label": "Footer",

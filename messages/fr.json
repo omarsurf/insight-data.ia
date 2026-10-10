@@ -42,7 +42,10 @@
     "privacy": "Politique de confidentialité",
     "notFound": "Page introuvable",
     "backHome": "Retour à l'accueil",
-    "pending": "Le contenu de cette page arrive en phase 2."
+    "pending": "Le contenu de cette page arrive en phase 2.",
+    "formDiagnostic": "Demande de diagnostic",
+    "formContact": "Votre message",
+    "formPending": "Le formulaire arrive en phase 4."
   },
   "footer": {
     "label": "Pied de page",

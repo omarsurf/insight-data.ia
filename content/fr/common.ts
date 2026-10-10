@@ -1,9 +1,9 @@
 /**
  * common.ts — Contenu français commun à plusieurs pages.
- * Texte repris tel quel des sections 02, 05, 08 et 11 de SOURCE.md ; les
+ * Texte repris tel quel des sections 02, 05, 08, 09 et 11 de SOURCE.md ; les
  * titres sont les traductions validées au lot 1.
  */
-import type { CtaContent, ReadinessContent, TitledText, VisionContent } from '../types';
+import type { AssessmentIntro, CtaContent, ReadinessContent, TitledText, VisionContent } from '../types';
 
 export const ctaBanner: CtaContent = {
   title: 'Prêt à révéler le potentiel de vos données ?',
@@ -122,3 +122,36 @@ export const whyItems: TitledText[] = [
     text: 'Nous prenons en compte la confidentialité, la gestion des accès et les exigences de sécurité dans la conception des projets.',
   },
 ];
+
+/** Le diagnostic gratuit : résumé sur l'accueil, détaillé sur la page Diagnostic. */
+export const assessmentIntro: AssessmentIntro = {
+  label: 'Diagnostic gratuit',
+  title: 'Découvrez le potentiel numérique de votre entreprise',
+  paragraphs: [
+    'Vous souhaitez mieux exploiter vos données, améliorer vos performances ou explorer les possibilités de l’intelligence artificielle, mais vous ne savez pas par où commencer ?',
+    'Nous proposons un premier diagnostic gratuit et sans engagement pour identifier les opportunités et les premières pistes d’amélioration.',
+  ],
+  includesTitle: 'Que comprend le diagnostic ?',
+  items: [
+    {
+      title: 'Évaluation de l’infrastructure de données',
+      text: 'Premier examen de l’organisation des données et des systèmes existants.',
+    },
+    {
+      title: 'Contrôle de la qualité des données',
+      text: 'Évaluation ciblée de la disponibilité et de la qualité des données à partir d’un échantillon convenu, lorsque cela est possible.',
+    },
+    {
+      title: 'Évaluation de la maturité numérique',
+      text: 'Identification des principaux besoins en matière de digitalisation et d’organisation des informations.',
+    },
+    {
+      title: 'Évaluation de la faisabilité IA',
+      text: 'Identification des applications potentielles de Data Science, de Machine Learning, de Computer Vision et d’intelligence artificielle.',
+    },
+    {
+      title: 'Identification des opportunités métier',
+      text: 'Priorisation des opportunités selon leur intérêt potentiel, leur faisabilité et les ressources nécessaires.',
+    },
+  ],
+};

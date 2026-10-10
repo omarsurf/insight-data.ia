@@ -1,0 +1,55 @@
+{
+  "site": {
+    "name": "Insight Data & AI",
+    "skip": "Aller au contenu",
+    "homeSuffix": ", accueil"
+  },
+  "nav": {
+    "label": "Navigation principale",
+    "solutions": "Solutions",
+    "allSolutions": "Toutes les solutions",
+    "methodology": "Méthodologie",
+    "industries": "Secteurs",
+    "about": "À propos",
+    "contact": "Contact",
+    "collaboration": "Collaboration",
+    "assessment": "Diagnostic gratuit",
+    "legal": "Mentions légales",
+    "privacy": "Confidentialité",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "language": "Langue",
+    "switchTo": "English version"
+  },
+  "solutions": {
+    "01": "Organiser et connecter les données",
+    "02": "Visualiser et piloter la performance",
+    "03": "Analyser et comprendre",
+    "04": "Prévoir et anticiper",
+    "05": "Automatiser et intégrer",
+    "06": "Innover avec l'intelligence artificielle"
+  },
+  "pages": {
+    "home": "Révélez les informations cachées dans vos données.",
+    "solutions": "Solutions",
+    "methodology": "Méthodologie",
+    "industries": "Secteurs",
+    "collaboration": "Collaboration",
+    "about": "À propos",
+    "assessment": "Diagnostic gratuit",
+    "contact": "Contact",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "notFound": "Page introuvable",
+    "backHome": "Retour à l'accueil",
+    "pending": "Le contenu de cette page arrive en phase 2."
+  },
+  "footer": {
+    "label": "Pied de page",
+    "explore": "Découvrir",
+    "company": "Société",
+    "legal": "Informations légales",
+    "contactPending": "Coordonnées à venir",
+    "signature": "Connecter. Visualiser. Comprendre. Prévoir. Automatiser. Innover."
+  }
+}

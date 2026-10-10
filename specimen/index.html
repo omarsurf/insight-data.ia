@@ -1,0 +1,459 @@
+<!doctype html>
+<!--
+  index.html — Page spécimen de la phase 0, hors du site.
+  Montre le design system « Le Tracé » dans un navigateur pour juger les
+  choix S1 à S14 de DESIGN_SYSTEM.md. Aucun contenu définitif : les textes
+  sont des extraits de SOURCE.md et des traductions encore à valider.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Spécimen — Insight Data &amp; AI</title>
+<!-- Polices par lien pour le spécimen seulement ; le site utilisera next/font. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Manrope:wght@400..800&family=Martian+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="specimen.css">
+<script src="specimen.js"></script>
+</head>
+<body>
+
+<!-- Symboles réutilisés : logo (recopié de brand/), six glyphes, tracé complet, icônes -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <symbol id="mark-full" viewBox="0 0 64 64">
+    <path class="ln" d="M8 15L19 10M8 15L19 21M8 27L19 21M8 27L19 32M8 41L19 32M8 41L19 43M8 52L19 43M8 52L19 54"/>
+    <path class="ln" d="M56 12L45 10M56 12L45 21M56 25L45 21M56 25L45 32M56 37L45 32M56 37L45 43M56 50L45 43M56 50L45 54"/>
+    <path class="lb" d="M19 10L28 10M19 21L28 21M19 32L28 32M19 43L28 43M19 54L28 54M45 10L36 10M45 21L36 21M45 32L36 32M45 43L36 43M45 54L36 54"/>
+    <rect class="ma" x="28" y="4" width="8" height="56" rx="4"/>
+    <circle class="mi" cx="19" cy="10" r="2.3"/><circle class="mi" cx="19" cy="21" r="3"/><circle class="mi" cx="19" cy="32" r="3.6"/><circle class="mi" cx="19" cy="43" r="3"/><circle class="mi" cx="19" cy="54" r="2.3"/>
+    <circle class="mi" cx="45" cy="10" r="2.3"/><circle class="mi" cx="45" cy="21" r="3"/><circle class="mi" cx="45" cy="32" r="3.6"/><circle class="mi" cx="45" cy="43" r="3"/><circle class="mi" cx="45" cy="54" r="2.3"/>
+    <circle class="mi" cx="8" cy="15" r="1.9" fill-opacity="0.55"/><circle class="mi" cx="8" cy="27" r="1.9" fill-opacity="0.55"/><circle class="mi" cx="8" cy="41" r="1.9" fill-opacity="0.55"/><circle class="mi" cx="8" cy="52" r="1.9" fill-opacity="0.55"/>
+    <circle class="mi" cx="56" cy="12" r="1.9" fill-opacity="0.55"/><circle class="mi" cx="56" cy="25" r="1.9" fill-opacity="0.55"/><circle class="mi" cx="56" cy="37" r="1.9" fill-opacity="0.55"/><circle class="mi" cx="56" cy="50" r="1.9" fill-opacity="0.55"/>
+  </symbol>
+  <symbol id="mark-small" viewBox="0 0 64 64">
+    <rect class="ma" x="26" y="5" width="12" height="54" rx="6"/>
+    <circle class="mi" cx="11" cy="14" r="5"/><circle class="mi" cx="11" cy="32" r="5"/><circle class="mi" cx="11" cy="50" r="5"/>
+    <circle class="mi" cx="53" cy="14" r="5"/><circle class="mi" cx="53" cy="32" r="5"/><circle class="mi" cx="53" cy="50" r="5"/>
+  </symbol>
+
+  <!-- 01 CONNECTER : des traits épars convergent en une ligne -->
+  <symbol id="g1" viewBox="0 0 48 48">
+    <path class="g-main" d="M7 9C17 9 18 24 28 24M6 20C15 20 19 24 28 24M8 31C17 31 20 24 28 24M6 41C17 41 18 24 28 24M28 24H42"/>
+    <circle class="g-point" cx="7" cy="9" r="1.6"/><circle class="g-point" cx="6" cy="20" r="1.6"/><circle class="g-point" cx="8" cy="31" r="1.6"/><circle class="g-point" cx="6" cy="41" r="1.6"/>
+    <circle class="g-node" cx="42" cy="24" r="2.5"/>
+  </symbol>
+  <!-- 02 VISUALISER : la ligne devient une courbe sur des axes -->
+  <symbol id="g2" viewBox="0 0 48 48">
+    <path class="g-aux" d="M7 6V41H43"/>
+    <path class="g-main" d="M10 34C16 34 17 20 23 22S31 30 35 17S40 11 42 10"/>
+  </symbol>
+  <!-- 03 COMPRENDRE : une tendance et des écarts autour des points -->
+  <symbol id="g3" viewBox="0 0 48 48">
+    <path class="g-aux g-aux-dash" d="M12 30V32.9M17 32V29.1M22 22V25.3M27 25V21.5M32 14V17.6M37 18V13.8"/>
+    <path class="g-main" d="M8 36L42 10"/>
+    <circle class="g-point" cx="12" cy="30" r="1.6"/><circle class="g-point" cx="17" cy="32" r="1.6"/><circle class="g-point" cx="22" cy="22" r="1.6"/><circle class="g-point" cx="27" cy="25" r="1.6"/><circle class="g-point" cx="32" cy="14" r="1.6"/><circle class="g-point" cx="37" cy="18" r="1.6"/>
+  </symbol>
+  <!-- 04 PRÉVOIR : la ligne passe en tireté, entourée d'une zone d'incertitude -->
+  <symbol id="g4" viewBox="0 0 48 48">
+    <path class="g-band" d="M22 24L43 3V24Z"/><path class="g-band" d="M22 24L43 8V18Z"/>
+    <path class="g-aux g-aux-dash" d="M22 6V42"/>
+    <path class="g-main" d="M5 31C11 31 14 21 22 24"/>
+    <path class="g-main g-dash" d="M22 24C29 26.5 35 16 43 13"/>
+    <circle class="g-node" cx="22" cy="24" r="2.5"/>
+  </symbol>
+  <!-- 05 AUTOMATISER : un signal carré régulier qui boucle -->
+  <symbol id="g5" viewBox="0 0 48 48">
+    <path class="g-aux g-aux-dash" d="M41 36C31 43 17 43 7 36"/><path class="g-aux" d="M7 36L8 40.2M7 36L11.2 35.4"/>
+    <path class="g-main" d="M5 30H12V18H20V30H28V18H36V30H43"/>
+  </symbol>
+  <!-- 06 INNOVER : la ligne se ramifie en branches tiretées -->
+  <symbol id="g6" viewBox="0 0 48 48">
+    <path class="g-main" d="M5 24H20"/>
+    <path class="g-main g-dash" d="M20 24C29 24 30 9 40 8M20 24C30 24 33 22 40 21M20 24C29 24 30 38 40 39"/>
+    <circle class="g-node" cx="20" cy="24" r="2.5"/>
+    <circle class="g-node-open" cx="42" cy="8" r="2.2"/><circle class="g-node-open" cx="42" cy="21" r="2.2"/><circle class="g-node-open" cx="42" cy="39" r="2.2"/>
+  </symbol>
+
+  <!-- Tracé complet : les six stations à la suite, 200 unités chacune -->
+  <symbol id="trace" viewBox="0 0 1200 120">
+    <path class="g-aux" d="M210 14V104H392"/>
+    <path class="g-aux" d="M408 78L596 28"/>
+    <path class="g-aux g-aux-dash" d="M600 8V112"/>
+    <path class="g-band" d="M600 46L800 4V62Z"/><path class="g-band" d="M600 46L800 14V46Z"/>
+    <path class="g-main" d="M12 18C80 18 90 60 150 60M10 46C70 46 100 60 150 60M14 78C80 78 100 60 150 60M10 104C80 104 90 60 150 60"/>
+    <path class="g-main" d="M150 60H200C240 60 250 34 290 42S350 84 400 56C440 34 470 72 520 52S570 44 600 46"/>
+    <path class="g-main g-dash" d="M600 46C660 52 720 30 800 30"/>
+    <path class="g-main" d="M800 30H830V62H870V30H910V62H950V30H1000"/>
+    <path class="g-main g-dash" d="M1000 30C1060 30 1100 10 1182 10M1000 30C1070 30 1110 46 1182 50M1000 30C1060 30 1100 86 1182 100"/>
+    <circle class="g-point" cx="12" cy="18" r="3"/><circle class="g-point" cx="10" cy="46" r="3"/><circle class="g-point" cx="14" cy="78" r="3"/><circle class="g-point" cx="10" cy="104" r="3"/>
+    <circle class="g-point" cx="440" cy="58" r="2.5"/><circle class="g-point" cx="480" cy="72" r="2.5"/><circle class="g-point" cx="520" cy="40" r="2.5"/><circle class="g-point" cx="560" cy="48" r="2.5"/>
+    <circle class="g-node" cx="150" cy="60" r="4.5"/><circle class="g-node" cx="400" cy="56" r="4.5"/><circle class="g-node" cx="600" cy="46" r="4.5"/><circle class="g-node" cx="800" cy="30" r="4.5"/><circle class="g-node" cx="1000" cy="30" r="4.5"/>
+    <circle class="g-node-open" cx="1186" cy="10" r="4"/><circle class="g-node-open" cx="1186" cy="50" r="4"/><circle class="g-node-open" cx="1186" cy="100" r="4"/>
+  </symbol>
+
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.1"/></symbol>
+
+  <!-- Schémas statistiques de la planche du logo, pour la variante S14 -->
+  <symbol id="plots" viewBox="0 0 460 150">
+    <path class="fl" d="M0 132.5H210"/>
+    <rect class="fa" x="0" y="131" width="8" height="1"/><rect class="fa" x="10" y="131" width="8" height="1"/><rect class="fa" x="20" y="130" width="8" height="2"/><rect class="fa" x="30" y="129" width="8" height="3"/><rect class="fa" x="40" y="127" width="8" height="5"/><rect class="fa" x="50" y="124" width="8" height="8"/><rect class="fa" x="60" y="118" width="8" height="14"/><rect class="fa" x="70" y="108" width="8" height="24"/><rect class="fa" x="80" y="92" width="8" height="40"/><rect class="fa" x="90" y="68" width="8" height="64"/><rect class="fc" x="100" y="40" width="8" height="92"/><rect class="fa" x="110" y="72" width="8" height="60"/><rect class="fa" x="120" y="94" width="8" height="38"/><rect class="fa" x="130" y="110" width="8" height="22"/><rect class="fa" x="140" y="119" width="8" height="13"/><rect class="fa" x="150" y="124" width="8" height="8"/><rect class="fa" x="160" y="127" width="8" height="5"/><rect class="fa" x="170" y="129" width="8" height="3"/><rect class="fa" x="180" y="130" width="8" height="2"/><rect class="fa" x="190" y="131" width="8" height="1"/><rect class="fa" x="200" y="131" width="8" height="1"/>
+    <path class="fbd" d="M104 30V134"/>
+    <path class="fbd" d="M260 150L460 0"/>
+    <circle class="fa" cx="274" cy="138" r="2"/><circle class="fa" cx="282" cy="128" r="2"/><circle class="fa" cx="286" cy="136" r="2"/><circle class="fa" cx="294" cy="122" r="2"/><circle class="fa" cx="298" cy="130" r="2"/><circle class="fa" cx="306" cy="114" r="2"/><circle class="fa" cx="312" cy="124" r="2"/><circle class="fa" cx="318" cy="108" r="2"/><circle class="fa" cx="324" cy="112" r="2"/><circle class="fa" cx="332" cy="100" r="2"/><circle class="fa" cx="336" cy="114" r="2"/><circle class="fa" cx="344" cy="92" r="2"/><circle class="fa" cx="350" cy="104" r="2"/><circle class="fa" cx="358" cy="84" r="2"/><circle class="fa" cx="364" cy="98" r="2"/><circle class="fa" cx="372" cy="74" r="2"/><circle class="fa" cx="378" cy="90" r="2"/><circle class="fa" cx="386" cy="66" r="2"/><circle class="fa" cx="394" cy="84" r="2"/><circle class="fa" cx="400" cy="56" r="2"/><circle class="fa" cx="408" cy="76" r="2"/><circle class="fa" cx="414" cy="44" r="2"/><circle class="fa" cx="420" cy="66" r="2"/><circle class="fa" cx="428" cy="34" r="2"/><circle class="fa" cx="436" cy="56" r="2"/><circle class="fa" cx="442" cy="24" r="2"/><circle class="fa" cx="448" cy="44" r="2"/>
+  </symbol>
+</defs>
+</svg>
+
+<main>
+
+<header class="wrap intro">
+  <span class="label">Phase 0 — Spécimen</span>
+  <h1 class="t-h1">Le Tracé, jugé à l'écran</h1>
+  <p class="t-lead">Cette page montre le design du site Insight Data &amp; AI avant sa construction. Chaque section indique les choix du design system qu'elle permet de confirmer ou de modifier.</p>
+</header>
+
+<!-- ============ 01 LOGO ============ -->
+<section class="wrap spec">
+  <div class="spec-head">
+    <span class="label">01 — Logo</span>
+    <h2 class="t-h3">Le logo et ses variantes</h2>
+    <p>Choix S13 : symbole réduit dans l'en-tête, symbole complet à partir de 48&nbsp;px.</p>
+  </div>
+  <div class="spec-body">
+    <div class="grid-3">
+      <div class="tile on-dark">
+        <span class="logo" style="font-size:16px"><svg width="56" height="56" aria-hidden="true"><use href="#mark-full"/></svg><span class="logo-text"><span class="logo-w1">INSIGHT</span><span class="logo-w2">DATA &amp; AI</span></span></span>
+      </div>
+      <div class="tile tile-light on-light">
+        <span class="logo" style="font-size:16px"><svg width="56" height="56" aria-hidden="true"><use href="#mark-full"/></svg><span class="logo-text"><span class="logo-w1">INSIGHT</span><span class="logo-w2">DATA &amp; AI</span></span></span>
+      </div>
+      <div class="tile tile-white on-mono">
+        <span class="logo" style="font-size:16px"><svg width="56" height="56" aria-hidden="true"><use href="#mark-full"/></svg><span class="logo-text"><span class="logo-w1">INSIGHT</span><span class="logo-w2">DATA &amp; AI</span></span></span>
+      </div>
+    </div>
+    <div>
+      <div class="row on-dark">
+        <svg width="56" height="56" aria-hidden="true"><use href="#mark-full"/></svg>
+        <svg width="48" height="48" aria-hidden="true"><use href="#mark-full"/></svg>
+        <svg width="32" height="32" aria-hidden="true"><use href="#mark-small"/></svg>
+        <svg width="28" height="28" aria-hidden="true"><use href="#mark-small"/></svg>
+        <svg width="16" height="16" aria-hidden="true"><use href="#mark-small"/></svg>
+      </div>
+      <p class="caption">Symbole complet à 56 et 48&nbsp;px ; symbole réduit à 32, 28 et 16&nbsp;px.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 PALETTE ============ -->
+<section class="wrap spec">
+  <div class="spec-head">
+    <span class="label">02 — Palette</span>
+    <h2 class="t-h3">Treize jetons</h2>
+    <p>Choix S6 : teintes dérivées du Midnight, du Signal Cyan et du Mist du logo. Le chiffre est le contraste sur le fond de page.</p>
+  </div>
+  <div class="spec-body">
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-canvas)"></div><span class="label">canvas</span><span class="caption">Fond de page</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-surface)"></div><span class="label">surface</span><span class="caption">Cartes, champs</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-surface-raised)"></div><span class="label">surface-raised</span><span class="caption">Panneau, menu</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-line)"></div><span class="label">line</span><span class="caption">Filets</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-line-strong)"></div><span class="label">line-strong · 1,8</span><span class="caption">Bordures de carte</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-ink)"></div><span class="label">ink · 17,0</span><span class="caption">Texte</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-ink-muted)"></div><span class="label">ink-muted · 8,3</span><span class="caption">Texte secondaire</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-control)"></div><span class="label">control · 4,9</span><span class="caption">Bordures de champs</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-accent)"></div><span class="label">accent · 9,0</span><span class="caption">Action, actif, tracé</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-accent-hover)"></div><span class="label">accent-hover · 11,7</span><span class="caption">Survol</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-accent-tint)"></div><span class="label">accent-tint</span><span class="caption">Fond d'un élément actif</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-error)"></div><span class="label">error · 7,6</span><span class="caption">Erreurs</span></div>
+      <div class="swatch"><div class="swatch-chip" style="background:var(--color-success)"></div><span class="label">success · 11,0</span><span class="caption">Confirmation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 TYPOGRAPHIE ============ -->
+<section class="wrap spec">
+  <div class="spec-head">
+    <span class="label">03 — Typographie</span>
+    <h2 class="t-h3">Trois voix, huit tailles</h2>
+    <p>Choix S2 : graisses de Manrope. Choix S3 : Martian Mono pour les étiquettes, comparée à JetBrains Mono.</p>
+  </div>
+  <div class="spec-body">
+    <div>
+      <div class="type-row"><span class="label">display</span><p class="t-display">Révélez les informations cachées dans vos données.</p></div>
+      <div class="type-row"><span class="label">h1</span><p class="t-h1" style="font-weight:700">Innover avec l'intelligence artificielle</p></div>
+      <div class="type-row"><span class="label">h1 · anglais</span><p class="t-h1" style="font-weight:700" lang="en">Innovate with Artificial Intelligence</p></div>
+      <div class="type-row"><span class="label">h2</span><p class="t-h2" style="font-weight:700">Des données à l'intelligence. De l'intelligence à la performance.</p></div>
+      <div class="type-row"><span class="label">h3</span><p class="t-h3" style="font-weight:700">Visualiser et piloter la performance</p></div>
+      <div class="type-row"><span class="label">lead</span><p class="t-lead">Votre partenaire en transformation digitale, Data Science et Intelligence Artificielle.</p></div>
+      <div class="type-row"><span class="label">body</span><p>Lorsque les données disponibles sont adaptées au problème, nous pouvons étudier et développer des modèles statistiques et de Machine Learning destinés à produire des estimations ou à anticiper certains événements.</p></div>
+      <div class="type-row"><span class="label">small</span><p class="t-small t-muted">Le diagnostic gratuit porte sur un périmètre initial défini conjointement.</p></div>
+      <div class="type-row"><span class="label">label</span><div><p class="label" style="color:var(--color-ink)">04 — Prévoir · Étape 1 · Exemple d'application</p><p class="caption">Martian Mono, 12&nbsp;px</p><p class="label label-alt" style="color:var(--color-ink);margin-top:16px">04 — Prévoir · Étape 1 · Exemple d'application</p><p class="caption">JetBrains Mono, 12&nbsp;px (police de repli)</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 TRAITS ============ -->
+<section class="wrap spec">
+  <div class="spec-head">
+    <span class="label">04 — Traits</span>
+    <h2 class="t-h3">Plein, tireté, hachuré</h2>
+    <p>Choix S1 et S4 : le vocabulaire du concept, sans ombre.</p>
+  </div>
+  <div class="spec-body">
+    <div class="grid-3">
+      <div><svg viewBox="0 0 240 24" class="stroke-demo" aria-hidden="true"><path d="M2 12H238"/></svg><p class="t-h3" style="font-weight:700;margin-top:16px">Plein</p><p class="caption">Mesuré, existant, certain.</p></div>
+      <div><svg viewBox="0 0 240 24" class="stroke-demo" aria-hidden="true"><path d="M2 12H238" stroke-dasharray="6 6"/></svg><p class="t-h3" style="font-weight:700;margin-top:16px">Tireté</p><p class="caption">Estimé, prévu, à étudier.</p></div>
+      <div><div class="hatch" style="height:24px"></div><p class="t-h3" style="font-weight:700;margin-top:16px">Hachuré</p><p class="caption">Conditionnel, soumis à faisabilité.</p></div>
+    </div>
+    <div class="grid-3">
+      <div><div class="texture dots"></div><p class="caption">Trame de points, tous les 24&nbsp;px.</p></div>
+      <div><div class="texture corners" style="border:0;background:var(--color-surface)"></div><p class="caption">Repères d'angle de 8&nbsp;px.</p></div>
+      <div><div class="texture hatch"></div><p class="caption">Hachures à 45°.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 GLYPHES ============ -->
+<section class="wrap spec">
+  <div class="spec-head">
+    <span class="label">05 — Glyphes</span>
+    <h2 class="t-h3">Les six stations</h2>
+    <p>Choix S12 : le dessin de chaque station, agrandi puis à sa taille d'emploi de 48&nbsp;px.</p>
+  </div>
+  <div class="spec-body">
+    <div class="grid-3">
+      <div class="glyph-cell reveal"><svg class="glyph-lg draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g1"/></svg><div class="row"><svg class="glyph" aria-hidden="true"><use href="#g1"/></svg><div><span class="label">01</span><p class="t-h3" style="font-weight:700">Connecter</p></div></div><p class="caption">Des traits épars convergent en une seule ligne.</p></div>
+      <div class="glyph-cell reveal"><svg class="glyph-lg draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g2"/></svg><div class="row"><svg class="glyph" aria-hidden="true"><use href="#g2"/></svg><div><span class="label">02</span><p class="t-h3" style="font-weight:700">Visualiser</p></div></div><p class="caption">La ligne devient une courbe lisible sur des axes.</p></div>
+      <div class="glyph-cell reveal"><svg class="glyph-lg draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g3"/></svg><div class="row"><svg class="glyph" aria-hidden="true"><use href="#g3"/></svg><div><span class="label">03</span><p class="t-h3" style="font-weight:700">Comprendre</p></div></div><p class="caption">Une tendance et des écarts apparaissent.</p></div>
+      <div class="glyph-cell reveal"><svg class="glyph-lg draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g4"/></svg><div class="row"><svg class="glyph" aria-hidden="true"><use href="#g4"/></svg><div><span class="label">04</span><p class="t-h3" style="font-weight:700">Prévoir</p></div></div><p class="caption">La ligne passe en tireté, entourée de sa zone d'incertitude.</p></div>
+      <div class="glyph-cell reveal"><svg class="glyph-lg draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g5"/></svg><div class="row"><svg class="glyph" aria-hidden="true"><use href="#g5"/></svg><div><span class="label">05</span><p class="t-h3" style="font-weight:700">Automatiser</p></div></div><p class="caption">Un signal carré régulier qui boucle.</p></div>
+      <div class="glyph-cell reveal"><svg class="glyph-lg draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g6"/></svg><div class="row"><svg class="glyph" aria-hidden="true"><use href="#g6"/></svg><div><span class="label">06</span><p class="t-h3" style="font-weight:700">Innover</p></div></div><p class="caption">La ligne se ramifie en branches tiretées.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 COMPOSANTS ============ -->
+<section class="wrap spec">
+  <div class="spec-head">
+    <span class="label">06 — Composants</span>
+    <h2 class="t-h3">Les briques des pages</h2>
+    <p>Choix S4 et S9 : coins de 6&nbsp;px, états de survol et de focus, cartes sans relief. Parcourez-les à la souris et à la touche Tab.</p>
+  </div>
+  <div class="spec-body">
+
+    <div class="row">
+      <a class="btn btn-primary" href="#">Demander un diagnostic gratuit</a>
+      <a class="btn btn-outline" href="#">Découvrir nos solutions</a>
+      <button class="btn" disabled>Désactivé</button>
+      <a class="arrow-link" href="#"><span>Voir la méthodologie</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+
+    <div class="grid-3">
+      <a class="card reveal" href="#">
+        <div class="card-top"><span class="label">03</span><svg class="glyph" aria-hidden="true"><use href="#g3"/></svg></div>
+        <h3 class="t-h3">Analyser et comprendre</h3>
+        <p class="t-muted">Vous constatez des variations de performance sans en comprendre les facteurs&nbsp;?</p>
+        <span class="arrow-link"><span>Découvrir</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a class="card reveal" href="#">
+        <div class="card-top"><span class="label">04</span><svg class="glyph" aria-hidden="true"><use href="#g4"/></svg></div>
+        <h3 class="t-h3">Prévoir et anticiper</h3>
+        <p class="t-muted">Vous souhaitez anticiper la demande, améliorer vos prévisions ou détecter certains risques&nbsp;?</p>
+        <span class="arrow-link"><span>Découvrir</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a class="card reveal" href="#">
+        <div class="card-top"><span class="label">05</span><svg class="glyph" aria-hidden="true"><use href="#g5"/></svg></div>
+        <h3 class="t-h3">Automatiser et intégrer</h3>
+        <p class="t-muted">Vos équipes consacrent trop de temps à des tâches répétitives&nbsp;?</p>
+        <span class="arrow-link"><span>Découvrir</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+      </a>
+    </div>
+
+    <div>
+      <span class="label">Nos solutions</span>
+      <ol class="caps" style="margin-top:16px">
+        <li><span class="label">01</span>Modélisation prédictive</li>
+        <li><span class="label">02</span>Prévision de séries temporelles</li>
+        <li><span class="label">03</span>Modèles de régression</li>
+        <li><span class="label">04</span>Modèles de classification</li>
+        <li><span class="label">05</span>Détection d'anomalies</li>
+        <li><span class="label">06</span>Clustering et segmentation</li>
+        <li><span class="label">07</span>Prévision de la demande</li>
+        <li><span class="label">08</span>Prévision de la production</li>
+        <li><span class="label">09</span>Prédiction des rendements</li>
+        <li><span class="label">10</span>Maintenance prédictive</li>
+      </ol>
+      <p class="caption">Traductions proposées, à valider.</p>
+    </div>
+
+    <div class="example corners reveal">
+      <span class="label">Exemple d'application</span>
+      <p>Une entreprise souhaite mieux planifier ses stocks à partir de ses historiques de ventes, de commandes et d’approvisionnement.</p>
+      <p>Nous évaluons la disponibilité et la qualité des historiques, les éventuels effets saisonniers et les autres facteurs pertinents avant de choisir une méthode de prévision.</p>
+    </div>
+
+    <div class="note reveal">
+      <span class="label">Faisabilité</span>
+      <p>Si les données sont insuffisantes, nous pouvons étudier les moyens de les compléter, d’améliorer leur collecte ou de commencer par une solution analytique plus simple. <a class="text-link" href="#">Voir notre approche</a></p>
+    </div>
+
+    <div class="goal reveal">
+      <p class="t-lead">Notre objectif&nbsp;: développer des outils prédictifs qui améliorent la planification et l’anticipation lorsque les données et les conditions opérationnelles le permettent.</p>
+    </div>
+
+    <ul class="bullets">
+      <li>La disponibilité des données nécessaires.</li>
+      <li>Leur qualité et leur représentativité.</li>
+      <li>L’existence d’un historique suffisant pour l’analyse envisagée.</li>
+    </ul>
+
+    <form class="form corners" onsubmit="return false">
+      <ol class="steps">
+        <li class="is-done">Vous</li>
+        <li class="is-current">Votre entreprise</li>
+        <li>Vos besoins</li>
+      </ol>
+      <div class="field">
+        <label for="f-company">Entreprise</label>
+        <input id="f-company" type="text" autocomplete="organization" value="Atelier Atlas">
+      </div>
+      <div class="field is-error">
+        <label for="f-email">E-mail professionnel</label>
+        <input id="f-email" type="email" autocomplete="email" value="contact@atelier" aria-describedby="f-email-err" aria-invalid="true">
+        <span class="field-error" id="f-email-err"><svg aria-hidden="true"><use href="#i-alert"/></svg>Indiquez une adresse e-mail complète, par exemple nom@entreprise.ma.</span>
+      </div>
+      <div class="field">
+        <label for="f-size">Taille de l'entreprise</label>
+        <select id="f-size"><option>11–50</option><option>1–10</option><option>51–250</option><option>Plus de 250</option></select>
+      </div>
+      <div class="field">
+        <label for="f-role">Fonction <span class="opt">— facultatif</span></label>
+        <input id="f-role" type="text" autocomplete="organization-title">
+      </div>
+      <label class="check"><input type="checkbox" checked><span>Prévoir et anticiper</span></label>
+      <label class="check"><input type="checkbox"><span>J'accepte que mes données soient utilisées pour répondre à ma demande.</span></label>
+      <div class="row"><button class="btn btn-outline" type="button">Retour</button><button class="btn btn-primary" type="submit">Continuer</button></div>
+    </form>
+
+  </div>
+</section>
+
+<!-- ============ 07 EN-TÊTE ============ -->
+<section class="wrap spec">
+  <div class="spec-head">
+    <span class="label">07 — En-tête</span>
+    <h2 class="t-h3">Ordinateur et mobile</h2>
+    <p>Choix S11 et S13 : en-tête opaque de 64 et 56&nbsp;px, symbole réduit, sans bouton de diagnostic. Le panneau s'ouvre au clic et se ferme par Échap.</p>
+  </div>
+  <div class="spec-body spec-wide">
+    <p class="caption only-mobile-note">L'en-tête d'ordinateur s'affiche ici à partir de 1024&nbsp;px de large.</p>
+    <div class="frame only-desktop">
+      <div class="hdr on-dark">
+        <a class="logo" href="#" style="font-size:9.5px" aria-label="Insight Data &amp; AI, accueil"><svg width="32" height="32" aria-hidden="true"><use href="#mark-small"/></svg><span class="logo-text"><span class="logo-w1">INSIGHT</span><span class="logo-w2">DATA &amp; AI</span></span></a>
+        <nav class="hdr-nav" aria-label="Navigation principale">
+          <button type="button" aria-expanded="true" aria-controls="panel-solutions">Solutions<svg aria-hidden="true"><use href="#i-chevron"/></svg></button>
+          <a href="#">Méthodologie</a><a href="#">Secteurs</a><a href="#">À propos</a><a href="#">Contact</a>
+        </nav>
+        <div class="hdr-end">
+          <span class="lang label"><a href="#" aria-current="true" lang="fr">FR</a>/<a href="#" lang="en">EN</a></span>
+        </div>
+      </div>
+      <div class="panel" id="panel-solutions">
+        <a href="#"><svg class="glyph" aria-hidden="true"><use href="#g1"/></svg><span><span class="label">01</span><br>Organiser et connecter les données</span></a>
+        <a href="#"><svg class="glyph" aria-hidden="true"><use href="#g2"/></svg><span><span class="label">02</span><br>Visualiser et piloter la performance</span></a>
+        <a href="#"><svg class="glyph" aria-hidden="true"><use href="#g3"/></svg><span><span class="label">03</span><br>Analyser et comprendre</span></a>
+        <a href="#"><svg class="glyph" aria-hidden="true"><use href="#g4"/></svg><span><span class="label">04</span><br>Prévoir et anticiper</span></a>
+        <a href="#"><svg class="glyph" aria-hidden="true"><use href="#g5"/></svg><span><span class="label">05</span><br>Automatiser et intégrer</span></a>
+        <a href="#"><svg class="glyph" aria-hidden="true"><use href="#g6"/></svg><span><span class="label">06</span><br>Innover avec l'intelligence artificielle</span></a>
+        <a class="arrow-link all" href="#"><span>Toutes les solutions</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+
+    <div class="row" style="align-items:flex-start">
+      <div class="frame phone">
+        <div class="hdr hdr-m on-dark">
+          <a class="logo" href="#" aria-label="Insight Data &amp; AI, accueil"><svg width="28" height="28" aria-hidden="true"><use href="#mark-small"/></svg></a>
+          <button class="menu-btn" type="button" aria-label="Ouvrir le menu"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+        </div>
+        <div class="menu">
+          <ul><li><a href="#">Solutions</a></li><li><a href="#">Méthodologie</a></li><li><a href="#">Secteurs</a></li><li><a href="#">À propos</a></li><li><a href="#">Contact</a></li></ul>
+          <span class="lang label"><a href="#" aria-current="true" lang="fr">FR</a>/<a href="#" lang="en">EN</a></span>
+        </div>
+      </div>
+      <p class="caption" style="max-width:36ch">Sur mobile, le symbole réduit seul et le bouton de menu. Le menu ouvert occupe tout l'écran.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 HERO ============ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="planes" aria-hidden="true"><div class="planes-tilt"><div class="plane plane-3"></div><div class="plane plane-2"></div><div class="plane plane-1"></div></div></div>
+  <div class="wrap hero-inner">
+    <span class="label">08 — Hero · choix S7 et S8</span>
+    <h2 class="t-display" id="hero-title"><span class="line">Révélez les</span><span class="line">informations cachées</span><span class="line">dans vos données.</span></h2>
+    <p class="t-lead">Votre partenaire en transformation digitale, Data Science et Intelligence Artificielle.</p>
+    <p class="t-muted">Nous accompagnons les entreprises dans l’organisation de leurs données, l’amélioration de leurs performances et le développement de solutions intelligentes adaptées à leurs besoins.</p>
+    <div class="row">
+      <a class="btn btn-primary" href="#">Demander un diagnostic gratuit</a>
+      <a class="btn btn-outline" href="#">Découvrir nos solutions</a>
+    </div>
+  </div>
+  <div class="wrap"><svg class="hero-trace" viewBox="0 0 1200 120" aria-hidden="true"><use href="#trace"/></svg></div>
+</section>
+
+<!-- ============ 09 SCÈNE ============ -->
+<section class="wrap scene" aria-labelledby="scene-title">
+  <div class="scene-sticky">
+    <div class="scene-panel corners" aria-hidden="true">
+      <div class="scene-back"></div>
+      <div class="scene-strip"><svg viewBox="0 0 1200 120"><use href="#trace"/></svg></div>
+    </div>
+    <div class="scene-text">
+      <div class="scene-head"><span class="label">09 — Scène du parcours · choix S7 et S10</span>
+      <h2 class="t-h2" id="scene-title">Des données dispersées à l'intelligence opérationnelle</h2></div>
+      <ol class="stations">
+        <li class="st" style="--i:0"><svg class="st-glyph draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g1"/></svg><div class="st-head"><span class="st-mark"></span><span class="label st-num">01 — Connecter</span><a href="#"><h3 class="t-h3">Organiser et connecter les données</h3></a></div><p>Rassembler les informations pertinentes issues des systèmes existants et construire une base fiable pour leur exploitation.</p></li>
+        <li class="st" style="--i:1"><svg class="st-glyph draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g2"/></svg><div class="st-head"><span class="st-mark"></span><span class="label st-num">02 — Visualiser</span><a href="#"><h3 class="t-h3">Rendre les performances visibles</h3></a></div><p>Transformer les données en indicateurs, tableaux de bord et rapports compréhensibles.</p></li>
+        <li class="st" style="--i:2"><svg class="st-glyph draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g3"/></svg><div class="st-head"><span class="st-mark"></span><span class="label st-num">03 — Comprendre</span><a href="#"><h3 class="t-h3">Comprendre les résultats</h3></a></div><p>Analyser les performances, identifier les tendances et étudier les facteurs susceptibles d’influencer les résultats.</p></li>
+        <li class="st" style="--i:3"><svg class="st-glyph draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g4"/></svg><div class="st-head"><span class="st-mark"></span><span class="label st-num">04 — Prévoir</span><a href="#"><h3 class="t-h3">Anticiper certains événements</h3></a></div><p>Développer des méthodes statistiques et des modèles prédictifs lorsque les données permettent d’obtenir des résultats suffisamment fiables.</p></li>
+        <li class="st" style="--i:4"><svg class="st-glyph draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g5"/></svg><div class="st-head"><span class="st-mark"></span><span class="label st-num">05 — Automatiser</span><a href="#"><h3 class="t-h3">Simplifier les opérations</h3></a></div><p>Automatiser les tâches répétitives, les rapports, les alertes et certains processus métier.</p></li>
+        <li class="st" style="--i:5"><svg class="st-glyph draw" viewBox="0 0 48 48" aria-hidden="true"><use href="#g6"/></svg><div class="st-head"><span class="st-mark"></span><span class="label st-num">06 — Innover</span><a href="#"><h3 class="t-h3">Développer de nouvelles capacités</h3></a></div><p>Étudier et intégrer des solutions avancées de Machine Learning, de vision par ordinateur et d’intelligence artificielle générative lorsque leur utilisation est pertinente.</p></li>
+      </ol>
+      <p class="caption scene-note">Cette progression représente une démarche de développement, et non un parcours obligatoire.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 VARIANTE ============ -->
+<section class="wrap spec">
+  <div class="spec-head">
+    <span class="label">10 — Variante</span>
+    <h2 class="t-h3">Schémas de la planche du logo</h2>
+    <p>Choix S14 : le bandeau du haut est celui du design system ; celui du bas reprend en fond les schémas statistiques de la planche.</p>
+  </div>
+  <div class="spec-body">
+    <div class="banner corners reveal">
+      <div class="banner-dots dots" aria-hidden="true"></div>
+      <h3 class="t-h2">Prêt à révéler le potentiel de vos données&nbsp;?</h3>
+      <p class="t-muted">Commençons par comprendre votre situation et identifier les opportunités les plus pertinentes pour votre entreprise.</p>
+      <a class="btn btn-primary" href="#">Demander un diagnostic gratuit</a>
+    </div>
+    <div class="banner corners reveal">
+      <svg class="banner-plots" viewBox="0 0 460 150" aria-hidden="true"><use href="#plots"/></svg>
+      <h3 class="t-h2" style="max-width:16ch">Prêt à révéler le potentiel de vos données&nbsp;?</h3>
+      <p class="t-muted" style="max-width:32ch">Commençons par comprendre votre situation et identifier les opportunités les plus pertinentes pour votre entreprise.</p>
+      <a class="btn btn-outline" href="#">Demander un diagnostic gratuit</a>
+    </div>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

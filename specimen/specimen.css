@@ -1,0 +1,473 @@
+/*
+ * specimen.css — Styles de la page spécimen (phase 0).
+ * Montre les composants et les animations du design system pour les juger
+ * à l'écran. Toutes les valeurs viennent de tokens.css.
+ */
+
+/* ---------- Base ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { color-scheme: dark; scroll-behavior: auto; }
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, ul, ol { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; }
+svg { display: block; }
+
+h1, h2, h3 { font-weight: 700; text-wrap: balance; }
+p { text-wrap: pretty; max-width: 68ch; }
+
+.wrap { max-width: 1200px; margin-inline: auto; padding-inline: 20px; }
+@media (min-width: 1024px) { .wrap { padding-inline: 40px; } }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+
+/* Focus commun : contour accent, sauf pour les champs (voir .field) */
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+/* ---------- Les trois voix typographiques ---------- */
+
+.t-display { font-size: var(--text-display); font-weight: 800; line-height: 1.02; letter-spacing: -0.02em; }
+.t-h1 { font-size: var(--text-h1); line-height: 1.06; letter-spacing: -0.015em; }
+.t-h2 { font-size: var(--text-h2); line-height: 1.12; letter-spacing: -0.01em; }
+.t-h3 { font-size: var(--text-h3); line-height: 1.25; }
+.t-lead { font-size: var(--text-lead); line-height: 1.55; }
+.t-small { font-size: var(--text-small); line-height: 1.55; }
+.t-muted { color: var(--color-ink-muted); }
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+.label-alt { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+/* ---------- Structure du spécimen ---------- */
+
+.intro { padding-block: 96px 64px; }
+.intro p { margin-top: 24px; color: var(--color-ink-muted); }
+
+/* Une section : étiquette dans la marge technique, contenu à droite */
+.spec { display: grid; gap: 32px; padding-block: 96px; border-top: 1px solid var(--color-line); }
+.spec-head p { margin-top: 12px; color: var(--color-ink-muted); font-size: var(--text-small); }
+.spec-head .label { display: block; margin-bottom: 12px; }
+.spec-body { display: grid; gap: 48px; min-width: 0; }
+@media (min-width: 1024px) {
+  .spec { grid-template-columns: 2fr 10fr; gap: 24px; padding-block: 160px; }
+}
+
+.row { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+.grid-3 { display: grid; gap: 16px; }
+@media (min-width: 640px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+
+.caption { margin-top: 8px; font-size: var(--text-small); color: var(--color-ink-muted); }
+
+/* ---------- Logo ---------- */
+
+.mi { fill: var(--mi); }
+.ma { fill: var(--ma); }
+.ln { fill: none; stroke: var(--mi); stroke-opacity: .3; stroke-width: .7; stroke-linecap: round; }
+.lb { fill: none; stroke: var(--ma); stroke-opacity: .7; stroke-width: .9; stroke-linecap: round; }
+.on-dark { --mi: var(--logo-white); --ma: var(--logo-cyan); }
+.on-light { --mi: var(--logo-midnight); --ma: var(--logo-cyan); }
+.on-mono { --mi: var(--logo-midnight); --ma: var(--logo-midnight); }
+
+.logo { display: inline-flex; align-items: center; gap: .75em; text-decoration: none; }
+.logo-text { display: inline-flex; flex-direction: column; align-items: center; gap: .12em; }
+.logo-w1 { font-weight: 700; font-size: 1.9em; letter-spacing: .16em; line-height: 1; margin-right: -.16em; }
+.logo-w2 { font-weight: 500; font-size: .8em; letter-spacing: .04em; line-height: 1; color: var(--color-ink-muted); word-spacing: .4em; }
+
+.tile {
+  display: flex; align-items: center; justify-content: center; gap: 24px;
+  min-height: 160px; padding: 24px;
+  border: 1px solid var(--color-line-strong); border-radius: var(--radius-base);
+}
+.tile-light { background: var(--color-ink); color: var(--logo-midnight); }
+.tile-light .logo-w2 { color: var(--logo-midnight); }
+.tile-white { background: var(--logo-white); color: var(--logo-midnight); }
+.tile-white .logo-w2 { color: var(--logo-midnight); }
+
+/* ---------- Palette ---------- */
+
+.swatches { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.swatch-chip { height: 64px; border: 1px solid var(--color-line-strong); border-radius: var(--radius-base); }
+.swatch .label { display: block; margin-top: 8px; color: var(--color-ink); }
+
+/* ---------- Typographie ---------- */
+
+.type-row { display: grid; gap: 8px; padding-block: 24px; border-top: 1px solid var(--color-line); }
+@media (min-width: 768px) { .type-row { grid-template-columns: 120px 1fr; gap: 24px; align-items: baseline; } }
+
+/* ---------- Traits et textures ---------- */
+
+.stroke-demo { stroke: var(--color-ink); stroke-width: 1.5; stroke-linecap: round; fill: none; }
+.hatch {
+  background: repeating-linear-gradient(45deg, var(--color-line-strong) 0 1px, transparent 1px 8px);
+}
+.dots {
+  background-image: radial-gradient(circle, var(--color-line-strong) 1px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+.texture { height: 96px; border-radius: var(--radius-base); border: 1px solid var(--color-line); }
+
+/* Repères d'angle : quatre équerres de 8 px */
+.corners { position: relative; }
+.corners::before {
+  content: ""; position: absolute; inset: -1px; pointer-events: none;
+  background:
+    linear-gradient(var(--color-control), var(--color-control)) left top / 8px 1px,
+    linear-gradient(var(--color-control), var(--color-control)) left top / 1px 8px,
+    linear-gradient(var(--color-control), var(--color-control)) right top / 8px 1px,
+    linear-gradient(var(--color-control), var(--color-control)) right top / 1px 8px,
+    linear-gradient(var(--color-control), var(--color-control)) left bottom / 8px 1px,
+    linear-gradient(var(--color-control), var(--color-control)) left bottom / 1px 8px,
+    linear-gradient(var(--color-control), var(--color-control)) right bottom / 8px 1px,
+    linear-gradient(var(--color-control), var(--color-control)) right bottom / 1px 8px;
+  background-repeat: no-repeat;
+}
+
+/* ---------- Glyphes et tracé ---------- */
+
+/* Classes des traits, communes aux glyphes et au tracé complet */
+.g-main { fill: none; stroke: var(--g, var(--color-accent)); stroke-width: var(--gw, 1.5); stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.g-dash { stroke-dasharray: 4 4; }
+.g-aux { fill: none; stroke: var(--color-control); stroke-width: 1; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.g-aux-dash { stroke-dasharray: 2 3; }
+.g-band { fill: var(--g, var(--color-accent)); fill-opacity: .14; stroke: none; }
+.g-node { fill: var(--g, var(--color-accent)); }
+.g-node-open { fill: var(--color-canvas); stroke: var(--g, var(--color-accent)); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.g-point { fill: var(--color-ink-muted); }
+
+.glyph { width: 48px; height: 48px; flex: none; }
+/* Agrandi, le trait s'épaissit pour rester en proportion des nœuds */
+.glyph-lg { --gw: 2.5; width: 100%; height: auto; max-width: 220px; }
+.glyph-cell { display: grid; gap: 16px; padding: 24px; border: 1px solid var(--color-line); border-radius: var(--radius-base); }
+
+/* ---------- Boutons ---------- */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 48px; padding: 8px 24px;
+  border: 1px solid transparent; border-radius: var(--radius-base);
+  font: inherit; font-weight: 500; line-height: 1.3; text-align: center; text-decoration: none; cursor: pointer;
+  transition: background-color var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast);
+}
+.btn-primary { background: var(--color-accent); color: var(--color-canvas); }
+.btn-primary:hover { background: var(--color-accent-hover); }
+.btn-outline { background: transparent; border-color: var(--color-control); color: var(--color-ink); }
+.btn-outline:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.btn[disabled] { background: transparent; border-color: var(--color-control); color: var(--color-control); cursor: not-allowed; }
+
+.arrow-link {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
+  color: var(--color-ink); text-decoration: none; font-weight: 500;
+}
+.arrow-link svg { width: 20px; height: 20px; stroke: var(--color-accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: transform var(--duration-fast); }
+.arrow-link:hover span, .card:hover .arrow-link span { text-decoration: underline dashed var(--color-accent); text-underline-offset: 6px; }
+.arrow-link:hover svg, .card:hover .arrow-link svg { transform: translateX(4px); }
+
+.text-link { color: var(--color-ink); text-decoration: underline var(--color-accent); text-underline-offset: 4px; transition: color var(--duration-fast); }
+.text-link:hover { color: var(--color-accent); }
+
+/* ---------- Carte solution et lampe d'inspection ---------- */
+
+.card {
+  --g: var(--color-ink-muted);
+  position: relative; display: grid; gap: 16px; align-content: start;
+  padding: 24px; background: var(--color-surface);
+  border: 1px solid var(--color-line-strong); border-radius: var(--radius-base);
+  text-decoration: none; color: inherit;
+}
+@media (min-width: 1024px) { .card { padding: 32px; } }
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.card:hover, .card:focus-visible { --g: var(--color-accent); }
+
+/* Lampe : seul le filet de 1 px s'éclaire, autour de la position du pointeur */
+.card::before {
+  content: ""; position: absolute; inset: -1px; padding: 1px; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(180px circle at var(--mx, -999px) var(--my, -999px), var(--color-accent), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0; transition: opacity var(--duration-fast);
+}
+.card:hover::before { opacity: 1; }
+
+/* ---------- Fiche de capacités ---------- */
+
+.caps { display: grid; column-gap: 48px; }
+@media (min-width: 768px) { .caps { grid-template-columns: 1fr 1fr; } }
+.caps li { display: flex; gap: 16px; align-items: baseline; padding-block: 12px; border-bottom: 1px solid var(--color-line); }
+
+/* ---------- Bloc d'exemple, note conditionnelle, objectif ---------- */
+
+.example { position: relative; display: grid; gap: 16px; padding: 24px 24px 24px 48px; background: var(--color-surface); border-radius: var(--radius-base); }
+@media (min-width: 1024px) { .example { padding: 32px 32px 32px 64px; } }
+/* Ligne de cote : filet vertical terminé par deux petits traits horizontaux */
+.example::after {
+  content: ""; position: absolute; left: 24px; top: 28px; bottom: 28px; width: 8px;
+  border: 1px solid var(--color-control); border-right: 0;
+}
+
+.note { display: grid; gap: 8px; padding-left: 24px; position: relative; }
+.note::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: repeating-linear-gradient(45deg, var(--color-control) 0 1px, transparent 1px 5px); }
+
+.goal { display: grid; gap: 16px; }
+.goal::before { content: ""; width: 48px; height: 2px; border-radius: 1px; background: var(--color-accent); }
+
+/* ---------- Listes du texte courant ---------- */
+
+.bullets li { position: relative; padding-left: 24px; }
+.bullets li::before { content: ""; position: absolute; left: 0; top: .8em; width: 8px; height: 1px; background: var(--color-control); }
+
+/* ---------- Formulaire ---------- */
+
+.form { display: grid; gap: 24px; padding: 24px; max-width: 520px; }
+@media (min-width: 1024px) { .form { padding: 32px; } }
+.field { display: grid; gap: 8px; }
+.field label { font-size: var(--text-small); font-weight: 500; }
+.field .opt { color: var(--color-ink-muted); font-weight: 400; }
+.field input, .field select, .field textarea {
+  width: 100%; min-height: 48px; padding: 0 16px;
+  background: var(--color-surface); color: var(--color-ink);
+  border: 1px solid var(--color-control); border-radius: var(--radius-base);
+  font: inherit;
+}
+.field textarea { min-height: 120px; padding-block: 12px; resize: vertical; }
+.field select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--color-ink-muted) 50%), linear-gradient(135deg, var(--color-ink-muted) 50%, transparent 50%); background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%; background-size: 6px 6px; background-repeat: no-repeat; }
+/* Focus d'un champ : la bordure passe à 2 px en accent, sans contour */
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+  outline: none; border: 2px solid var(--color-accent); padding-inline: 15px;
+}
+.field.is-error input { border-color: var(--color-error); }
+.field-error { display: flex; gap: 8px; align-items: center; color: var(--color-error); font-size: var(--text-small); }
+.field-error svg { width: 16px; height: 16px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; }
+
+.check { display: flex; gap: 12px; align-items: flex-start; min-height: 44px; font-size: var(--text-small); cursor: pointer; }
+.check input {
+  appearance: none; flex: none; width: 20px; height: 20px; margin: 2px 0 0;
+  border: 1px solid var(--color-control); border-radius: var(--radius-small);
+  background: transparent; cursor: pointer;
+}
+.check input:checked { background: var(--color-accent); border-color: var(--color-accent); }
+.check input:checked::after {
+  content: ""; display: block; width: 5px; height: 10px; margin: 1px 0 0 6px;
+  border: solid var(--color-canvas); border-width: 0 2px 2px 0; transform: rotate(45deg);
+}
+
+/* Indicateur d'étapes de saisie : fait en plein, courant avec nœud, à venir en tireté */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); }
+.steps li { display: grid; gap: 8px; padding-top: 16px; position: relative; font-size: var(--text-small); color: var(--color-ink-muted); border-top: 1.5px dashed var(--color-control); }
+.steps li.is-done { border-top-style: solid; border-top-color: var(--color-ink); }
+.steps li.is-current { color: var(--color-ink); border-top-style: solid; border-top-color: var(--color-accent); }
+.steps li.is-current::before { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--color-accent); }
+
+/* ---------- En-tête ---------- */
+
+.frame { border: 1px solid var(--color-line-strong); border-radius: var(--radius-base); overflow: hidden; }
+.hdr { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 64px; padding-inline: 24px; background: var(--color-canvas); border-bottom: 1px solid var(--color-line); }
+.hdr-nav { display: flex; gap: 8px; }
+.hdr-nav a, .hdr-nav button {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px;
+  background: none; border: 0; border-radius: var(--radius-base);
+  color: var(--color-ink); font: inherit; font-size: var(--text-small); font-weight: 500; text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: color var(--duration-fast);
+}
+.hdr-nav a:hover, .hdr-nav button:hover, .hdr-nav button[aria-expanded="true"] { color: var(--color-accent); }
+.hdr-nav svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.hdr-end { display: flex; align-items: center; gap: 16px; flex: none; }
+/* L'en-tête d'ordinateur ne se montre qu'à partir de 1024 px, comme sur le site */
+.only-desktop { display: none; }
+@media (min-width: 1024px) { .only-desktop { display: block; } .only-mobile-note { display: none; } }
+/* La démonstration d'en-tête occupe toute la largeur, comme sur le site */
+.spec-wide { grid-column: 1 / -1; }
+.lang { display: inline-flex; align-items: center; min-height: 44px; gap: 6px; }
+.lang a { text-decoration: none; color: var(--color-ink-muted); padding: 12px 2px; }
+.lang a[aria-current] { color: var(--color-ink); }
+
+.panel { display: grid; gap: 8px; padding: 24px; background: var(--color-surface-raised); }
+.panel[hidden] { display: none; }
+@media (min-width: 768px) { .panel { grid-template-columns: repeat(3, 1fr); } }
+.panel a { --g: var(--color-ink-muted); display: flex; gap: 16px; align-items: center; min-height: 64px; padding: 8px 12px; border-radius: var(--radius-base); text-decoration: none; }
+.panel a:hover { --g: var(--color-accent); background: var(--color-accent-tint); }
+.panel .glyph { width: 40px; height: 40px; }
+.panel .all { grid-column: 1 / -1; }
+
+.hdr-m { height: 56px; padding-inline: 20px; }
+.menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: none; border: 0; color: var(--color-ink); border-radius: var(--radius-base); }
+.menu-btn svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; }
+.phone { width: 100%; max-width: 390px; }
+.menu { display: flex; flex-direction: column; min-height: 420px; padding: 24px 20px; background: var(--color-surface-raised); }
+.menu ul { display: grid; gap: 4px; }
+.menu li a { display: flex; align-items: center; min-height: 48px; font-size: var(--text-h3); font-weight: 700; text-decoration: none; }
+.menu .lang { margin-top: 24px; }
+
+/* ---------- Hero ---------- */
+
+.hero { position: relative; overflow: hidden; border-top: 1px solid var(--color-line); }
+.hero-inner { position: relative; display: grid; align-content: center; gap: 24px; min-height: min(560px, 100svh); padding-block: 64px 24px; }
+@media (min-width: 1024px) { .hero-inner { padding-left: calc((100% + 24px) / 6); padding-right: calc((100% + 24px) / 6); } }
+.hero .row { margin-top: 8px; }
+
+/* Trois plans de trame en perspective ; l'ensemble s'incline selon le pointeur */
+.planes { position: absolute; inset: 0; perspective: 900px; pointer-events: none; }
+.planes-tilt {
+  position: absolute; inset: 0; transform-style: preserve-3d;
+  transform: rotateX(calc(var(--py, 0) * -4deg)) rotateY(calc(var(--px, 0) * 4deg));
+  transition: transform var(--duration-base) var(--ease-settle);
+}
+.plane {
+  position: absolute; left: -20%; right: -20%; top: 52%; height: 120%;
+  background-image: radial-gradient(circle, var(--color-control) 1px, transparent 1.5px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, #000 20%, transparent 75%);
+  transform-origin: 50% 0;
+}
+.plane-1 { transform: rotateX(62deg) translateZ(0); opacity: .7; }
+.plane-2 { transform: rotateX(62deg) translateZ(-90px); opacity: .55; }
+.plane-3 { transform: rotateX(62deg) translateZ(-180px); opacity: .3; }
+
+.hero-trace { position: relative; width: 100%; height: auto; padding-bottom: 32px; }
+@media (min-width: 1024px) { .line { white-space: nowrap; } }
+
+/* Dévoilement du slogan : démarre au premier affichage, en CSS seul */
+.line { display: block; animation: rise 520ms var(--ease-settle) both; }
+.line:nth-child(2) { animation-delay: 70ms; }
+.line:nth-child(3) { animation-delay: 140ms; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+@keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+.hero-trace { animation: wipe var(--duration-trace) var(--ease-trace) 200ms both; }
+
+/* ---------- Scène du parcours ---------- */
+
+/* Par défaut : mise en page empilée (mobile, fenêtre basse, navigateur sans
+   animations au défilement, mouvement réduit). */
+.scene { padding-block: 96px; }
+.scene-panel { display: none; }
+.scene-head { display: grid; gap: 12px; margin-bottom: 48px; }
+.scene-note { margin-top: 32px; }
+.stations { display: grid; gap: 48px; }
+.st { --g: var(--color-accent); display: grid; gap: 12px; }
+.st-glyph { --gw: 2.5; width: 100%; max-width: 200px; height: auto; }
+.st-head { display: grid; gap: 8px; }
+.st-num { color: var(--color-accent); }
+.st a { text-decoration: none; }
+.st a:hover { color: var(--color-accent); }
+.st-mark { display: none; }
+@media (min-width: 640px) {
+  .st { grid-template-columns: 200px 1fr; column-gap: 48px; align-content: center; }
+  .st-glyph { grid-row: span 2; }
+}
+
+@media (min-width: 1024px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* Mise en page épinglée : la scène occupe quatre hauteurs de fenêtre.
+       La liste et ses éléments passent en « display: contents » pour que
+       titres et descriptions se placent sur la grille commune ; le balisage
+       reste une liste ordonnée de six liens toujours visibles. */
+    .scene { height: 400vh; padding-block: 0; view-timeline-name: --scene; view-timeline-axis: block; }
+    .scene-sticky {
+      position: sticky; top: 0; height: 100vh;
+      display: grid; grid-template-columns: 7fr 5fr; grid-template-rows: auto repeat(6, auto) auto;
+      column-gap: 48px; align-content: center;
+    }
+    .scene-text, .stations, .st { display: contents; }
+    .scene-head { grid-column: 1 / -1; grid-row: 1; margin-bottom: 32px; }
+
+    /* Rapport 5:3 : chaque station du tracé (200 x 120 unités) remplit exactement le panneau */
+    .scene-panel { display: block; grid-column: 1; grid-row: 2 / span 6; position: relative; aspect-ratio: 5 / 3; align-self: center; overflow: hidden; border: 1px solid var(--color-line); border-radius: var(--radius-base); }
+    /* Calque du fond : avance moins vite que le tracé, d'où la profondeur */
+    .scene-back {
+      position: absolute; inset: 0 -40% 0 0;
+      background-image: radial-gradient(circle, var(--color-line-strong) 1px, transparent 1.5px);
+      background-size: 24px 24px;
+      animation: back linear both; animation-timeline: --scene; animation-range: contain 0% contain 100%;
+    }
+    /* Calque du tracé : six stations, une par largeur de panneau */
+    .scene-strip {
+      position: absolute; inset: 0 auto 0 0; width: 600%; height: 100%;
+      animation: strip linear both; animation-timeline: --scene; animation-range: contain 0% contain 100%;
+    }
+    .scene-strip svg { width: 100%; height: 100%; }
+
+    .st-glyph { display: none; }
+    .st-head { grid-column: 2; grid-row: calc(var(--i) + 2); position: relative; gap: 2px; padding: 10px 0 10px 20px; }
+    .st-head .t-h3 { font-size: var(--text-body); }
+    .st-num { animation: num linear both; animation-timeline: --scene; animation-range: contain calc(var(--i) * 16.666%) contain calc((var(--i) + 1) * 16.666%); }
+    .st-mark {
+      display: block; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; border-radius: 1px;
+      background: var(--color-accent); transform-origin: 50% 0;
+      animation: mark linear both; animation-timeline: --scene; animation-range: contain calc(var(--i) * 16.666%) contain calc((var(--i) + 1) * 16.666%);
+    }
+    /* Les six descriptions partagent la même case, sous le panneau ; seule
+       celle de la station courante est opaque. */
+    .st p {
+      grid-column: 1; grid-row: 8; align-self: start; min-height: 4.5em; margin-top: 24px;
+      animation: desc linear both; animation-timeline: --scene; animation-range: contain calc(var(--i) * 16.666%) contain calc((var(--i) + 1) * 16.666%);
+    }
+    .scene-note { grid-column: 2; grid-row: 8; margin-top: 24px; padding-left: 20px; }
+  }
+}
+
+@keyframes strip { to { transform: translateX(-83.3333%); } }
+@keyframes back { to { transform: translateX(-28%); } }
+@keyframes mark { 0%, 100% { opacity: 0; transform: scaleY(.2); } 12%, 88% { opacity: 1; transform: scaleY(1); } }
+@keyframes num { 0%, 100% { color: var(--color-ink-muted); } 12%, 88% { color: var(--color-accent); } }
+@keyframes desc { 0%, 100% { opacity: 0; } 12%, 88% { opacity: 1; } }
+
+/* ---------- Bandeau et variante S14 ---------- */
+
+.banner { position: relative; overflow: hidden; display: grid; gap: 16px; justify-items: start; padding: 48px 24px; border: 1px solid var(--color-line); border-radius: var(--radius-base); }
+@media (min-width: 1024px) { .banner { padding: 64px; } }
+.banner > * { position: relative; }
+.banner-dots { position: absolute; inset: 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 60%); mask-image: linear-gradient(90deg, transparent, #000 60%); }
+.banner-plots { position: absolute; right: 24px; top: 50%; width: min(46%, 460px); height: auto; transform: translateY(-50%); }
+.fa { fill: var(--color-ink); fill-opacity: .2; }
+.fc { fill: var(--color-accent); fill-opacity: .55; }
+.fl { fill: none; stroke: var(--color-ink); stroke-opacity: .2; stroke-width: 1; }
+.fbd { fill: none; stroke: var(--color-accent); stroke-opacity: .6; stroke-width: 1.3; stroke-dasharray: 5 4; }
+
+/* ---------- Entrées à l'écran ---------- */
+
+/* Navigateur avec animations au défilement : tout en CSS, sans script */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
+    .draw { animation: wipe linear both; animation-timeline: view(); animation-range: entry 20% cover 40%; }
+  }
+}
+
+/* Repli : l'état masqué ne s'applique que si le script a posé la classe « io » */
+.io .reveal { opacity: 0; transform: translateY(12px); }
+.io .reveal.in { opacity: 1; transform: none; transition: opacity var(--duration-base) var(--ease-settle), transform var(--duration-base) var(--ease-settle); }
+.io .draw { clip-path: inset(0 100% 0 0); }
+.io .draw.in { animation: wipe var(--duration-trace) var(--ease-trace) both; }
+
+/* ---------- Mouvement réduit : aucun mouvement ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .planes-tilt { transform: none; }
+}

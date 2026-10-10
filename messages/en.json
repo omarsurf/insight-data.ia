@@ -1,0 +1,55 @@
+{
+  "site": {
+    "name": "Insight Data & AI",
+    "skip": "Skip to content",
+    "homeSuffix": ", home"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "solutions": "Solutions",
+    "allSolutions": "All solutions",
+    "methodology": "Methodology",
+    "industries": "Industries",
+    "about": "About",
+    "contact": "Contact",
+    "collaboration": "Engagement models",
+    "assessment": "Free assessment",
+    "legal": "Legal notice",
+    "privacy": "Privacy",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "switchTo": "Version française"
+  },
+  "solutions": {
+    "01": "Organize & Connect Data",
+    "02": "Visualize & Monitor Performance",
+    "03": "Analyze & Understand",
+    "04": "Predict & Anticipate",
+    "05": "Automate & Integrate",
+    "06": "Innovate with Artificial Intelligence"
+  },
+  "pages": {
+    "home": "Uncover the Insights Hidden in Your Data.",
+    "solutions": "Solutions",
+    "methodology": "Methodology",
+    "industries": "Industries",
+    "collaboration": "Engagement models",
+    "about": "About",
+    "assessment": "Free assessment",
+    "contact": "Contact",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "notFound": "Page not found",
+    "backHome": "Back to home",
+    "pending": "The content of this page arrives in phase 2."
+  },
+  "footer": {
+    "label": "Footer",
+    "explore": "Explore",
+    "company": "Company",
+    "legal": "Legal information",
+    "contactPending": "Contact details coming soon",
+    "signature": "Connect. Visualize. Understand. Predict. Automate. Innovate."
+  }
+}

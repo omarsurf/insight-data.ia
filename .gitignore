@@ -20,3 +20,11 @@ out/
 # Documents de cadrage et fichiers source du logo : gardés en local, hors du dépôt public
 /*.md
 /brand/
+
+# Compilation et outils
+/coverage
+/build
+*.tsbuildinfo
+next-env.d.ts
+/test-results/
+/playwright-report/

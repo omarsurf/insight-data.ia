@@ -1,0 +1,32 @@
+# ci.yml — Intégration continue.
+# À chaque envoi et à chaque demande de fusion : types, linter, tests
+# unitaires, compilation, puis tests de bout en bout et d'accessibilité
+# sur les trois moteurs de navigateur (PRD, section 10).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: rapport-playwright
+          path: test-results/

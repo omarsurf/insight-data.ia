@@ -1,0 +1,22 @@
+# Dépendances
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Variables d'environnement : jamais dans le dépôt
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel/
+
+# Système et éditeurs
+.DS_Store
+*.log
+
+# Documents de cadrage et fichiers source du logo : gardés en local, hors du dépôt public
+/*.md
+/brand/

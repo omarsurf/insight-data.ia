@@ -5,7 +5,7 @@
  * Les titres sont les traductions du lot 1, validées par le fondateur.
  */
 import type { HomeContent } from '../types';
-import { ctaBanner } from './common';
+import { ctaBanner, readiness } from './common';
 
 export const home: HomeContent = {
   hero: {
@@ -102,31 +102,7 @@ export const home: HomeContent = {
     link: 'Voir la méthodologie',
   },
 
-  readiness: {
-    label: 'Maturité des données et faisabilité',
-    title: 'La bonne solution commence par de bonnes fondations',
-    paragraphs: [
-      'Les possibilités offertes par la Data Science et l’intelligence artificielle dépendent du problème étudié, des données disponibles et des conditions dans lesquelles la solution devra fonctionner.',
-      'Nous évaluons ces éléments avant de recommander une technologie avancée.',
-    ],
-    cases: [
-      {
-        stroke: 'solid',
-        title: 'Quand vos données sont prêtes',
-        text: 'Lorsque les données sont suffisamment adaptées à la problématique, nous pouvons étudier le développement d’analyses avancées, de modèles prédictifs ou d’applications d’intelligence artificielle.',
-      },
-      {
-        stroke: 'dashed',
-        title: 'Quand vos données doivent être améliorées',
-        text: 'Lorsque les données sont dispersées, incomplètes ou insuffisantes, nous pouvons proposer une première phase de structuration, de validation ou d’amélioration de la collecte.',
-      },
-      {
-        stroke: 'short',
-        title: 'Quand une solution plus simple convient mieux',
-        text: 'Certaines problématiques peuvent être résolues plus efficacement par un tableau de bord, une analyse statistique ou une automatisation fondée sur des règles, sans développer de modèle complexe.',
-      },
-    ],
-  },
+  readiness,
 
   why: {
     label: 'Pourquoi Insight Data & AI ?',

@@ -6,8 +6,9 @@
 import type { Locale } from '@/i18n/routing';
 import { ctaBanner as ctaBannerFr } from './fr/common';
 import { home as homeFr } from './fr/home';
+import { methodology as methodologyFr } from './fr/methodology';
 import { solutions as solutionsFr } from './fr/solutions';
-import type { CtaContent, HomeContent, SolutionsContent } from './types';
+import type { CtaContent, HomeContent, MethodologyContent, SolutionsContent } from './types';
 
 const homeByLocale: Partial<Record<Locale, HomeContent>> = { fr: homeFr };
 
@@ -27,4 +28,11 @@ export function getSolutionsContent(locale: Locale): SolutionsContent | undefine
 /** Contenu du bandeau d'appel au diagnostic, s'il existe déjà. */
 export function getCtaContent(locale: Locale): CtaContent | undefined {
   return ctaByLocale[locale];
+}
+
+const methodologyByLocale: Partial<Record<Locale, MethodologyContent>> = { fr: methodologyFr };
+
+/** Contenu de la page Méthodologie, s'il existe déjà. */
+export function getMethodologyContent(locale: Locale): MethodologyContent | undefined {
+  return methodologyByLocale[locale];
 }

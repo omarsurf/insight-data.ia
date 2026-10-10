@@ -36,10 +36,7 @@ export interface HomeContent {
     steps: { name: string; text: string }[];
     link: string;
   };
-  readiness: SectionIntro & {
-    /** Trois situations, chacune avec son type de trait d'en-tête. */
-    cases: (TitledText & { stroke: 'solid' | 'dashed' | 'short' })[];
-  };
+  readiness: ReadinessContent;
   why: SectionIntro & { items: string[]; link: string };
   assessment: SectionIntro & { includesTitle: string; items: TitledText[]; cta: string };
   closing: CtaContent;
@@ -91,4 +88,27 @@ export interface SolutionsContent {
     next: string;
   };
   items: SolutionContent[];
+}
+
+/** Maturité des données : trois situations, chacune avec son type de trait d'en-tête. */
+export interface ReadinessContent extends SectionIntro {
+  cases: (TitledText & { stroke: 'solid' | 'dashed' | 'short' })[];
+}
+
+/** Contenu de la page Méthodologie. */
+export interface MethodologyContent {
+  intro: SectionIntro;
+  stepLabel: string;
+  steps: { name: string; paragraphs: string[] }[];
+  outro: string;
+  readiness: ReadinessContent;
+  commitment: {
+    label: string;
+    title: string;
+    opening: string;
+    /** Phrase de non-garantie, affichée en note conditionnelle. */
+    condition: string;
+    conditionLabel: string;
+    closing: string;
+  };
 }

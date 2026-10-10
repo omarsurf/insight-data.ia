@@ -1,7 +1,7 @@
 /**
  * sections.tsx — Les sections de l'accueil qui suivent la vision :
- * aperçu de la méthode, maturité des données, raisons de nous choisir et
- * présentation du diagnostic. Chacune résume une page détaillée et y renvoie.
+ * aperçu de la méthode, raisons de nous choisir et présentation du
+ * diagnostic. Chacune résume une page détaillée et y renvoie.
  */
 import type { HomeContent } from '@/content/types';
 import { ArrowLink, ButtonLink } from '../button-link';
@@ -21,23 +21,6 @@ export function MethodPreview({ content }: { content: HomeContent['method'] }) {
         ))}
       </ol>
       <ArrowLink href="/methodology">{content.link}</ArrowLink>
-    </Section>
-  );
-}
-
-/** Les trois situations de maturité des données, chacune avec son type de trait. */
-export function Readiness({ content }: { content: HomeContent['readiness'] }) {
-  return (
-    <Section intro={content} id="readiness-title">
-      <ul className="grid gap-8 md:grid-cols-3 md:gap-6">
-        {content.cases.map((item) => (
-          <li key={item.title} className="grid content-start gap-4">
-            <span className={`stroke-${item.stroke}`} aria-hidden="true" />
-            <h3 className="t-h3">{item.title}</h3>
-            <p className="text-ink-muted">{item.text}</p>
-          </li>
-        ))}
-      </ul>
     </Section>
   );
 }

@@ -143,6 +143,66 @@
   .panel-link { --g: var(--color-ink-muted); display: flex; gap: 16px; align-items: center; min-height: 64px; padding: 8px 12px; border-radius: var(--radius-base); }
   .panel-link:hover { --g: var(--color-accent); background: var(--color-accent-tint); }
 
+  /* Boutons : principal (un seul par écran) et contour */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 8px 24px;
+    border: 1px solid transparent; border-radius: var(--radius-base);
+    font-weight: 500; line-height: 1.3; text-align: center;
+    transition: background-color var(--duration-fast), color var(--duration-fast), border-color var(--duration-fast);
+  }
+  .btn-primary { background: var(--color-accent); color: var(--color-canvas); }
+  .btn-primary:hover { background: var(--color-accent-hover); }
+  .btn-outline { border-color: var(--color-control); color: var(--color-ink); }
+  .btn-outline:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+  /* Lien fléché : soulignement tireté et flèche qui avance au survol */
+  .arrow-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 500; }
+  .arrow-link svg { color: var(--color-accent); transition: transform var(--duration-fast); }
+  .arrow-link:hover span { text-decoration: underline dashed var(--color-accent); text-underline-offset: 6px; }
+  .arrow-link:hover svg { transform: translateX(4px); }
+
+  /* Textures : trame de points et hachures (sens « conditionnel ») */
+  .dots {
+    background-image: radial-gradient(circle, var(--color-line-strong) 1px, transparent 1.5px);
+    background-size: 24px 24px;
+  }
+  .hatch { background: repeating-linear-gradient(45deg, var(--color-control) 0 1px, transparent 1px 5px); }
+
+  /* Repères d'angle : quatre équerres de 8 px */
+  .corners { position: relative; }
+  .corners::before {
+    content: ""; position: absolute; inset: -1px; pointer-events: none;
+    background:
+      linear-gradient(var(--color-control), var(--color-control)) left top / 8px 1px,
+      linear-gradient(var(--color-control), var(--color-control)) left top / 1px 8px,
+      linear-gradient(var(--color-control), var(--color-control)) right top / 8px 1px,
+      linear-gradient(var(--color-control), var(--color-control)) right top / 1px 8px,
+      linear-gradient(var(--color-control), var(--color-control)) left bottom / 8px 1px,
+      linear-gradient(var(--color-control), var(--color-control)) left bottom / 1px 8px,
+      linear-gradient(var(--color-control), var(--color-control)) right bottom / 8px 1px,
+      linear-gradient(var(--color-control), var(--color-control)) right bottom / 1px 8px;
+    background-repeat: no-repeat;
+  }
+
+  /* Hero : trois plans de trame en perspective, immobiles en phase 2 */
+  .planes { position: absolute; inset: 0; perspective: 900px; pointer-events: none; overflow: hidden; }
+  .plane {
+    position: absolute; left: -20%; right: -20%; top: 52%; height: 120%;
+    background-image: radial-gradient(circle, var(--color-control) 1px, transparent 1.5px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, #000 20%, transparent 75%);
+    transform-origin: 50% 0;
+  }
+  .plane-1 { transform: rotateX(62deg) translateZ(0); opacity: .7; }
+  .plane-2 { transform: rotateX(62deg) translateZ(-90px); opacity: .55; }
+  .plane-3 { transform: rotateX(62deg) translateZ(-180px); opacity: .3; }
+
+  /* Trait d'en-tête des trois situations de maturité : plein, tireté, plein court */
+  .stroke-solid, .stroke-dashed, .stroke-short { display: block; height: 0; border-top: 1.5px solid var(--color-ink); }
+  .stroke-dashed { border-top-style: dashed; }
+  .stroke-short { width: 40%; }
+
   /* Menu mobile : boîte de dialogue native, en plein écran */
   .mobile-menu {
     width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;

@@ -1,16 +1,15 @@
 /**
  * stations.tsx — Les six stations du parcours, en mise en page empilée.
  * Liste ordonnée de six liens, toujours visibles, vers les pages solution.
- * La mise en page épinglée et son animation au défilement arrivent en phase 3.
+ * Employée sur l'accueil et sur la page À propos. La mise en page épinglée
+ * de l'accueil et son animation au défilement arrivent en phase 3.
  */
 import { getLocale } from 'next-intl/server';
-import type { HomeContent } from '@/content/types';
+import type { VisionContent } from '@/content/types';
 import type { Locale } from '@/i18n/routing';
 import { hrefFor } from '@/lib/routes';
 import { Link } from '../app-link';
 import { Glyph } from '../glyph';
-
-type VisionContent = HomeContent['vision'];
 
 export async function Stations({ stations, note }: Pick<VisionContent, 'stations' | 'note'>) {
   const locale = (await getLocale()) as Locale;

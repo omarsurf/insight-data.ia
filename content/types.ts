@@ -27,10 +27,7 @@ export interface HomeContent {
     secondaryCta: string;
   };
   problem: SectionIntro;
-  vision: SectionIntro & {
-    stations: { id: SolutionId; name: string; title: string; text: string }[];
-    note: string;
-  };
+  vision: VisionContent;
   method: SectionIntro & {
     stepLabel: string;
     steps: { name: string; text: string }[];
@@ -111,4 +108,40 @@ export interface MethodologyContent {
     conditionLabel: string;
     closing: string;
   };
+}
+
+/** La vision : le parcours en six stations et la mention qui l'accompagne. */
+export interface VisionContent extends SectionIntro {
+  stations: { id: SolutionId; name: string; title: string; text: string }[];
+  note: string;
+}
+
+/** Contenu de la page Secteurs. */
+export interface IndustriesContent {
+  intro: SectionIntro;
+  listIntro: string;
+  items: TitledText[];
+  /** Avertissement de faisabilité, affiché en note conditionnelle. */
+  condition: { label: string; text: string };
+  closing: string;
+}
+
+/** Contenu de la page Collaboration. */
+export interface CollaborationContent {
+  intro: SectionIntro;
+  items: TitledText[];
+  outro: string[];
+}
+
+/** Contenu de la page À propos. */
+export interface AboutContent {
+  label: string;
+  title: string;
+  /** Les quatre paragraphes qui suivent le slogan dans le texte source. */
+  intro: string[];
+  who: { paragraphs: string[]; cycleIntro: string; cycle: string[]; closing: string[] };
+  vision: VisionContent;
+  ambition: string;
+  why: SectionIntro & { items: TitledText[] };
+  engagement: SectionIntro & { listIntro: string; items: string[]; closing: string };
 }

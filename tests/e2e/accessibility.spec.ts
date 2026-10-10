@@ -15,6 +15,8 @@ const templates = [
   '/en/about',
   '/fr/solutions',
   '/fr/methodologie',
+  '/fr/secteurs',
+  '/fr/collaboration',
   '/fr/solutions/prevoir-anticiper',
   '/fr/solutions/innover-intelligence-artificielle',
   '/en/solutions/predict-anticipate',

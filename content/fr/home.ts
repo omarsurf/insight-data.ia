@@ -5,7 +5,7 @@
  * Les titres sont les traductions du lot 1, validées par le fondateur.
  */
 import type { HomeContent } from '../types';
-import { ctaBanner, readiness } from './common';
+import { ctaBanner, readiness, vision, whyItems } from './common';
 
 export const home: HomeContent = {
   hero: {
@@ -27,53 +27,7 @@ export const home: HomeContent = {
     ],
   },
 
-  vision: {
-    label: 'Notre vision',
-    title: 'Des données dispersées à l’intelligence opérationnelle',
-    paragraphs: [
-      'Chaque entreprise dispose d’informations qui peuvent contribuer à améliorer ses performances : ventes, achats, production, coûts, stocks, qualité, maintenance, logistique ou relation client.',
-      'Notre vision consiste à rendre ces informations plus utiles grâce à une démarche progressive.',
-    ],
-    stations: [
-      {
-        id: '01',
-        name: 'Connecter',
-        title: 'Organiser et connecter les données',
-        text: 'Rassembler les informations pertinentes issues des systèmes existants et construire une base fiable pour leur exploitation.',
-      },
-      {
-        id: '02',
-        name: 'Visualiser',
-        title: 'Rendre les performances visibles',
-        text: 'Transformer les données en indicateurs, tableaux de bord et rapports compréhensibles.',
-      },
-      {
-        id: '03',
-        name: 'Comprendre',
-        title: 'Comprendre les résultats',
-        text: 'Analyser les performances, identifier les tendances et étudier les facteurs susceptibles d’influencer les résultats.',
-      },
-      {
-        id: '04',
-        name: 'Prévoir',
-        title: 'Anticiper certains événements',
-        text: 'Développer des méthodes statistiques et des modèles prédictifs lorsque les données permettent d’obtenir des résultats suffisamment fiables.',
-      },
-      {
-        id: '05',
-        name: 'Automatiser',
-        title: 'Simplifier les opérations',
-        text: 'Automatiser les tâches répétitives, les rapports, les alertes et certains processus métier.',
-      },
-      {
-        id: '06',
-        name: 'Innover',
-        title: 'Développer de nouvelles capacités',
-        text: 'Étudier et intégrer des solutions avancées de Machine Learning, de vision par ordinateur et d’intelligence artificielle générative lorsque leur utilisation est pertinente.',
-      },
-    ],
-    note: 'Cette progression représente une démarche de développement, et non un parcours obligatoire. Une entreprise peut commencer par n’importe quelle étape si ses données, son infrastructure et ses besoins le permettent.',
-  },
+  vision,
 
   method: {
     label: 'Notre méthodologie',
@@ -107,15 +61,7 @@ export const home: HomeContent = {
   why: {
     label: 'Pourquoi Insight Data & AI ?',
     title: 'La technologie au service d’un objectif clair',
-    items: [
-      'Une approche orientée métier',
-      'Des compétences de bout en bout',
-      'Des décisions fondées sur les données',
-      'Une infrastructure flexible',
-      'La faisabilité avant la complexité',
-      'Des solutions évolutives',
-      'Sécurité et confidentialité',
-    ],
+    items: whyItems.map((item) => item.title),
     link: 'En savoir plus sur nous',
   },
 

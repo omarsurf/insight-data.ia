@@ -4,11 +4,22 @@
  * dans une langue affiche son titre provisoire.
  */
 import type { Locale } from '@/i18n/routing';
+import { about as aboutFr } from './fr/about';
+import { collaboration as collaborationFr } from './fr/collaboration';
 import { ctaBanner as ctaBannerFr } from './fr/common';
 import { home as homeFr } from './fr/home';
+import { industries as industriesFr } from './fr/industries';
 import { methodology as methodologyFr } from './fr/methodology';
 import { solutions as solutionsFr } from './fr/solutions';
-import type { CtaContent, HomeContent, MethodologyContent, SolutionsContent } from './types';
+import type {
+  AboutContent,
+  CollaborationContent,
+  CtaContent,
+  HomeContent,
+  IndustriesContent,
+  MethodologyContent,
+  SolutionsContent,
+} from './types';
 
 const homeByLocale: Partial<Record<Locale, HomeContent>> = { fr: homeFr };
 
@@ -35,4 +46,23 @@ const methodologyByLocale: Partial<Record<Locale, MethodologyContent>> = { fr: m
 /** Contenu de la page Méthodologie, s'il existe déjà. */
 export function getMethodologyContent(locale: Locale): MethodologyContent | undefined {
   return methodologyByLocale[locale];
+}
+
+const industriesByLocale: Partial<Record<Locale, IndustriesContent>> = { fr: industriesFr };
+const collaborationByLocale: Partial<Record<Locale, CollaborationContent>> = { fr: collaborationFr };
+const aboutByLocale: Partial<Record<Locale, AboutContent>> = { fr: aboutFr };
+
+/** Contenu de la page Secteurs, s'il existe déjà. */
+export function getIndustriesContent(locale: Locale): IndustriesContent | undefined {
+  return industriesByLocale[locale];
+}
+
+/** Contenu de la page Collaboration, s'il existe déjà. */
+export function getCollaborationContent(locale: Locale): CollaborationContent | undefined {
+  return collaborationByLocale[locale];
+}
+
+/** Contenu de la page À propos, s'il existe déjà. */
+export function getAboutContent(locale: Locale): AboutContent | undefined {
+  return aboutByLocale[locale];
 }

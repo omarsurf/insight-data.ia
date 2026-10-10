@@ -5,6 +5,7 @@
  * Les titres sont les traductions du lot 1, validées par le fondateur.
  */
 import type { HomeContent } from '../types';
+import { ctaBanner } from './common';
 
 export const home: HomeContent = {
   hero: {
@@ -175,13 +176,5 @@ export const home: HomeContent = {
     cta: 'Demander un diagnostic gratuit',
   },
 
-  closing: {
-    title: 'Prêt à révéler le potentiel de vos données ?',
-    paragraphs: [
-      'Vous souhaitez structurer vos données, améliorer la visibilité sur vos performances, mieux comprendre vos résultats, anticiper certains événements ou automatiser vos processus ?',
-      'Commençons par comprendre votre situation et identifier les opportunités les plus pertinentes pour votre entreprise.',
-      'Découvrez comment vos données peuvent devenir un véritable levier de performance.',
-    ],
-    cta: 'Demander un diagnostic gratuit',
-  },
+  closing: ctaBanner,
 };

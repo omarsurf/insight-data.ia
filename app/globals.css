@@ -203,6 +203,47 @@
   .stroke-dashed { border-top-style: dashed; }
   .stroke-short { width: 40%; }
 
+  /* Bloc « Exemple d'application » : ligne de cote à gauche, terminée par deux traits */
+  .example { position: relative; display: grid; gap: 16px; padding: 24px 24px 24px 48px; background: var(--color-surface); border-radius: var(--radius-base); }
+  @media (min-width: 1024px) { .example { padding: 32px 32px 32px 64px; } }
+  .example::after {
+    content: ""; position: absolute; left: 24px; top: 28px; bottom: 28px; width: 8px;
+    border: 1px solid var(--color-control); border-right: 0;
+  }
+
+  /* Note conditionnelle : bande hachurée à gauche, texte aussi lisible que le reste */
+  .note { position: relative; display: grid; gap: 8px; padding-left: 24px; }
+  .note::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: repeating-linear-gradient(45deg, var(--color-control) 0 1px, transparent 1px 5px); }
+
+  /* Phrase d'objectif, précédée d'un trait cyan plein */
+  .goal { display: grid; gap: 16px; }
+  .goal::before { content: ""; width: 48px; height: 2px; border-radius: 1px; background: var(--color-accent); }
+
+  /* Liste à puces du texte courant : tiret court */
+  .bullets li { position: relative; padding-left: 24px; }
+  .bullets li::before { content: ""; position: absolute; left: 0; top: .8em; width: 8px; height: 1px; background: var(--color-control); }
+
+  /* Carte solution : toute la carte est un lien ; le glyphe passe en cyan au survol */
+  .card {
+    --g: var(--color-ink-muted);
+    display: grid; gap: 16px; align-content: start; padding: 24px;
+    background: var(--color-surface); border: 1px solid var(--color-line-strong); border-radius: var(--radius-base);
+    transition: border-color var(--duration-fast);
+  }
+  @media (min-width: 1024px) { .card { padding: 32px; } }
+  .card:hover, .card:focus-visible { --g: var(--color-accent); border-color: var(--color-control); }
+  .card:hover .arrow-link span { text-decoration: underline dashed var(--color-accent); text-underline-offset: 6px; }
+  .card:hover .arrow-link svg { transform: translateX(4px); }
+
+  /* Fil d'Ariane du parcours : six nœuds reliés ; le nœud courant est plein */
+  .crumbs { display: flex; align-items: center; }
+  .crumb { display: flex; align-items: center; }
+  .crumb + .crumb::before { content: ""; width: 20px; height: 1.5px; background: var(--color-accent); opacity: .5; }
+  @media (min-width: 640px) { .crumb + .crumb::before { width: 40px; } }
+  .crumb-link { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-inline: -14px; border-radius: 50%; }
+  .crumb-dot { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--color-accent); background: var(--color-canvas); transition: background-color var(--duration-fast); }
+  .crumb-link:hover .crumb-dot, .crumb-link[aria-current="page"] .crumb-dot { background: var(--color-accent); }
+
   /* Menu mobile : boîte de dialogue native, en plein écran */
   .mobile-menu {
     width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;

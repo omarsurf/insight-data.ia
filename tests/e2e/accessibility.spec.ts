@@ -8,7 +8,16 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
 /** Un représentant par gabarit : accueil, page simple, page solution. */
-const templates = ['/fr', '/en', '/fr/a-propos', '/en/about', '/fr/solutions/prevoir-anticiper', '/en/solutions/predict-anticipate'];
+const templates = [
+  '/fr',
+  '/en',
+  '/fr/a-propos',
+  '/en/about',
+  '/fr/solutions',
+  '/fr/solutions/prevoir-anticiper',
+  '/fr/solutions/innover-intelligence-artificielle',
+  '/en/solutions/predict-anticipate',
+];
 
 for (const url of templates) {
   test(`aucune violation d'accessibilité sur ${url}`, async ({ page }) => {
